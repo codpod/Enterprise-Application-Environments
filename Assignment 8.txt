@@ -3503,7 +3503,7 @@ FUND NUMBER/NAME:   5/BRIDGE BUILDING FUND                 $1,500,000.00        
 Czech Philharmonic                                           84,459.4590   WITHDRAWAL NOT PROCESSED    (0.0000)         84,459.4590 
 FUND NUMBER/NAME:  55/VIENNA PHILH HIGH YIELD                $999,999.99                      (          $0.00)         $999,999.99 
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   1
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   1
 19:46                                             MONTHLY INVESTMENT TRANSACTIONS
 
                                                       ENDOWMENT SHARE   TRANSACTION       TRANSACTION CHANGE     NEW ENDOWMENT SHARE
@@ -3539,7 +3539,7 @@ FUND NUMBER/NAME: 101/WASHINGTON & ADAMS FUND           $1,108,140.21           
 
 Symphony Orchestra of the Bavarian Radio            UNKNOWN ORCHESTRA  EXCHANGE OUT NOT PROCESSED
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   2
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   2
 19:46                                             MONTHLY INVESTMENT TRANSACTIONS
 
                                                       ENDOWMENT SHARE   TRANSACTION       TRANSACTION CHANGE     NEW ENDOWMENT SHARE
@@ -3576,7 +3576,7 @@ FUND NUMBER/NAME:   5/BRIDGE BUILDING FUND              $1,500,000.00           
 Czech Philharmonic                                        84,459.4590  WITHDRAWAL NOT PROCESSED     (0.0000)             84,459.4590
 FUND NUMBER/NAME:  55/VIENNA PHILH HIGH YIELD             $999,999.99                      (          $0.00)             $999,999.99
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   3
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   3
 19:46                                             MONTHLY INVESTMENT TRANSACTIONS
 
                                                       ENDOWMENT SHARE   TRANSACTION       TRANSACTION CHANGE     NEW ENDOWMENT SHARE
@@ -3612,7 +3612,7 @@ FUND NUMBER/NAME: 101/WASHINGTON & ADAMS FUND           $1,809,500.99           
 Philharmonic Hamburg                                     436,999.2720  DEPOSIT                 441,453.3630             878,452.6340
 FUND NUMBER/NAME:  10/20TH CENT MONEY MKT FUND          $6,000,000.00                         $6,061,154.67           $12,061,154.67
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   4
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   4
 19:46                                             MONTHLY INVESTMENT TRANSACTIONS
 
                                                       ENDOWMENT SHARE   TRANSACTION       TRANSACTION CHANGE     NEW ENDOWMENT SHARE
@@ -3648,7 +3648,7 @@ Metropolitan Opera Orchestra
 MET Orchestra                                            225,733.5730  REINVESTMENT                 56.4340             225,790.0070
 FUND NUMBER/NAME:  65/BERLIN PHILH HIGH YIELD           $2,507,900.00                               $626.98            $2,508,526.98
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   5
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   5
 19:46                                             MONTHLY INVESTMENT TRANSACTIONS
 
                                                       ENDOWMENT SHARE   TRANSACTION       TRANSACTION CHANGE     NEW ENDOWMENT SHARE
@@ -3685,7 +3685,7 @@ FUND NUMBER/NAME:   2/GEOFFREY'S BBQ FUND                 $821,144.35           
 Bamberg Symphony Orchestra                                15,148.4760  DEPOSIT                     478.7530              15,627.2290
 FUND NUMBER/NAME:  62/THOS JEFFERSON HIGH YLD             $136,184.80                             $4,303.99              $140,488.79
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   6
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   6
 19:46                                             MONTHLY INVESTMENT TRANSACTIONS
 
                                                       ENDOWMENT SHARE   TRANSACTION       TRANSACTION CHANGE     NEW ENDOWMENT SHARE
@@ -3721,7 +3721,7 @@ FUND NUMBER/NAME:  48/HONG KONG MONEY FUND                 $99,999.27           
 
 Royal Concertgebouw Orchestra                       UNKNOWN ORCHESTRA  DEPOSIT NOT PROCESSED
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   7
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   7
 19:46                                             MONTHLY INVESTMENT TRANSACTIONS
 
                                                       ENDOWMENT SHARE   TRANSACTION       TRANSACTION CHANGE     NEW ENDOWMENT SHARE
@@ -3740,7 +3740,7 @@ FUND NUMBER/NAME:  51/21ST CENT MONEY MKT FUND             $99,999.98           
 TRANSACTIONS:  63               SHARE TOTALS:          7,470,809.5810                        1,051,082.1140           8,521,891.6890
                                DOLLAR TOTALS:         $122,029,308.07                        $10,801,862.96          $132,831,171.03
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   1
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   1
 19:46                                                  LOW INVESTMENT REPORT
 
 ORCHESTRA NAME                                   FUND NUMBER    FUND NAME                    CURRENT SHARE AMOUNT      CURRENT VALUE
@@ -3778,7 +3778,7 @@ Des Moines Symphony                                        2    GEOFFREY'S BBQ F
 
 Bamberg Symphony Orchestra                                62    THOS JEFFERSON HIGH YLD               15,627.2290        $140,488.79
 
-12/05/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   2
+12/08/2020                                      ORCHESTRAL INVESTMENTS COMPANY, INC.                                       PAGE:   2
 19:46                                                  LOW INVESTMENT REPORT
 
 ORCHESTRA NAME                                   FUND NUMBER    FUND NAME                    CURRENT SHARE AMOUNT      CURRENT VALUE
