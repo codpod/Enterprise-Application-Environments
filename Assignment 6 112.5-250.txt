@@ -1,0 +1,1095 @@
+                   J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2        
+
+ 
+22.36.20 JOB06307 ---- MONDAY,    09 NOV 2020 ----
+22.36.20 JOB06307  IRR010I  USERID KC03I74  IS ASSIGNED TO THIS JOB.
+22.36.21 JOB06307  ICH70001I KC03I74  LAST ACCESS AT 21:50:38 ON MONDAY, NOVEMBER 9, 2020
+22.36.21 JOB06307  $HASP373 KC03I74A STARTED - INIT 2    - CLASS A        - SYS 2964
+22.36.22 JOB06307  $HASP395 KC03I74A ENDED - RC=0000
+
+------ JES2 JOB STATISTICS ------
+
+
+  09 NOV 2020 JOB EXECUTION DATE
+
+
+          397 CARDS READ
+
+
+          942 SYSOUT PRINT RECORDS
+
+
+            0 SYSOUT PUNCH RECORDS
+
+
+           75 SYSOUT SPOOL KBYTES
+
+
+         0.02 MINUTES EXECUTION TIME
+!! END OF JES SPOOL FILE !!
+       1 //KC03I74A JOB ,'C.MCANTIRE',MSGCLASS=H                                 JOB06307
+         //*                                                                             
+         //******************************************************************            
+         //*CSCI465          ASSIGNMENT6           FALL 2020                *            
+         //*                                                                *            
+         //*DEVELOPER NAME: CODY MCANTIRE                                   *            
+         //*PURPOSE: ASSEMBLE,BIND,EXECUTE USING                            *            
+         //*         HIGH LEVEL ASSEMBLER                                   *            
+         //******************************************************************            
+         //*                                                                             
+         //*THIS STEP WILL EXECUTE THE HIGH LEVEL ASSEMBLER                              
+       2 //JSTEP01  EXEC PGM=ASMA90,PARM=ASA                                             
+         //*                                                                             
+       3 //SYSLIB   DD DSN=SYS1.MACLIB,DISP=SHR                                          
+       4 //SYSIN    DD *                                                                 
+         //*                                                                             
+       5 //SYSLIN   DD DSN=&&OBJMOD,SPACE=(3040,(40,40),,,ROUND),                        
+         //            DISP=(MOD,PASS)                                                   
+         //*                                                                             
+       6 //SYSUT1   DD SPACE=(CYL,(1,1))                                                 
+         //*                                                                             
+       7 //SYSPRINT DD SYSOUT=*                                                          
+         //*                                                                             
+         //*THIS STEP IS THE BINDER                                                      
+       8 //JSTEP02  EXEC PGM=HEWL,COND=(0,LT)                                            
+         //*                                                                             
+         //*SYSLIB  DD DSN=CEE.SCEELKED,DISP=SHR                                         
+         //*                                                                             
+       9 //SYSLIN   DD DSN=&&OBJMOD,DISP=(OLD,DELETE)                                    
+         //*                                                                             
+      10 //SYSLMOD  DD DSN=KC03I74.CSCI465.LOADLIB(ENDOWMT3),                            
+         //            SPACE=(1024,(50,20,1)),                                           
+         //            DSNTYPE=LIBRARY,                                                  
+         //            DISP=(MOD,KEEP,KEEP)                                              
+         //*                                                                             
+      11 //SYSPRINT DD SYSOUT=*                                                          
+         //*                                                                             
+         //*THIS STEP WILL EXECUTE ASSIGN3A                                              
+      12 //JSTEP03  EXEC PGM=ENDOWMT3,COND=(0,LT)                                        
+         //*                                                                             
+      13 //STEPLIB  DD DSN=KC03I74.CSCI465.LOADLIB,DISP=SHR                              
+         //*                                                                             
+      14 //ENDFILE  DD DSN=KC02322.CSCI465.DATAFA20(DATA5),DISP=SHR                      
+         //*                                                                             
+      15 //RPTFILE  DD SYSOUT=*                                                          
+         //*                                                                             
+      16 //LEFILE   DD SPACE=(TRK,(1,1))                                                 
+         //*                                                                             
+      17 //SYSUDUMP DD SYSOUT=*                                                          
+      18 //                                                                              
+!! END OF JES SPOOL FILE !!
+ICH70001I KC03I74  LAST ACCESS AT 21:50:38 ON MONDAY, NOVEMBER 9, 2020
+IEFA111I KC03I74A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR KC03I74A JSTEP01
+IEF237I 1001 ALLOCATED TO SYSLIB
+IEF237I JES2 ALLOCATED TO SYSIN
+IGD101I SMS ALLOCATED TO DDNAME (SYSLIN  )
+        DSN (SYS20314.T223620.RA000.KC03I74A.OBJMOD.H01  )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00                                                                
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT1  )
+        DSN (SYS20314.T223620.RA000.KC03I74A.R0150365    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00                                                                
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF142I KC03I74A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   SYS1.MACLIB                                  KEPT          
+IEF285I   VOL SER NOS= VTMVSC.                            
+IEF285I   KC03I74.KC03I74A.JOB06307.D0000101.?         SYSIN         
+IGD106I SYS20314.T223620.RA000.KC03I74A.OBJMOD.H01   PASSED,    DDNAME=SYSLIN  
+IGD105I SYS20314.T223620.RA000.KC03I74A.R0150365     DELETED,   DDNAME=SYSUT1  
+IEF285I   KC03I74.KC03I74A.JOB06307.D0000102.?         SYSOUT        
+IEF373I STEP/JSTEP01 /START 2020314.2236
+IEF032I STEP/JSTEP01 /STOP  2020314.2236 
+        CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+        VIRT:   248K  SYS:   256K  EXT:    32768K  SYS:    11644K
+        ATB- REAL:                  1068K  SLOTS:                     0K
+             VIRT- ALLOC:      16M SHRD:       0M
+IEF236I ALLOC. FOR KC03I74A JSTEP02
+IGD103I SMS ALLOCATED TO DDNAME SYSLIN
+IGD103I SMS ALLOCATED TO DDNAME SYSLMOD
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF142I KC03I74A JSTEP02 - STEP WAS EXECUTED - COND CODE 0000
+IGD105I SYS20314.T223620.RA000.KC03I74A.OBJMOD.H01   DELETED,   DDNAME=SYSLIN  
+IGD104I KC03I74.CSCI465.LOADLIB                      RETAINED,  DDNAME=SYSLMOD 
+IEF285I   KC03I74.KC03I74A.JOB06307.D0000103.?         SYSOUT        
+IEF373I STEP/JSTEP02 /START 2020314.2236
+IEF032I STEP/JSTEP02 /STOP  2020314.2236 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+        VIRT:   144K  SYS:   256K  EXT:     1640K  SYS:    11576K
+        ATB- REAL:                  1068K  SLOTS:                     0K
+             VIRT- ALLOC:      15M SHRD:       0M
+IEF236I ALLOC. FOR KC03I74A JSTEP03
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IGD103I SMS ALLOCATED TO DDNAME ENDFILE
+IEF237I JES2 ALLOCATED TO RPTFILE
+IGD101I SMS ALLOCATED TO DDNAME (LEFILE  )
+        DSN (SYS20314.T223620.RA000.KC03I74A.R0150366    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00                                                                
+IEF237I JES2 ALLOCATED TO SYSUDUMP
+IEF142I KC03I74A JSTEP03 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC03I74.CSCI465.LOADLIB                      RETAINED,  DDNAME=STEPLIB 
+IGD104I KC02322.CSCI465.DATAFA20                     RETAINED,  DDNAME=ENDFILE 
+IEF285I   KC03I74.KC03I74A.JOB06307.D0000104.?         SYSOUT        
+IGD105I SYS20314.T223620.RA000.KC03I74A.R0150366     DELETED,   DDNAME=LEFILE  
+IEF285I   KC03I74.KC03I74A.JOB06307.D0000105.?         SYSOUT        
+IEF373I STEP/JSTEP03 /START 2020314.2236
+IEF032I STEP/JSTEP03 /STOP  2020314.2236 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+        VIRT:   152K  SYS:   264K  EXT:        0K  SYS:    11616K
+        ATB- REAL:                  1068K  SLOTS:                     0K
+             VIRT- ALLOC:      15M SHRD:       0M
+IEF375I  JOB/KC03I74A/START 2020314.2236
+IEF033I  JOB/KC03I74A/STOP  2020314.2236 
+        CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+!! END OF JES SPOOL FILE !!
+
+                                         High Level Assembler Option Summary                   (PTF UI61337)   Page    1            
+
+
+                                                                                            HLASM R6.0  2020/11/09 22.36            
+
+  No Overriding ASMAOPT Parameters                                                                                                  
+  Overriding Parameters-  ASA                                                                                                       
+  No Process Statements                                                                                                             
+                                                                                                                                    
+                                                                                                                                    
+  Options for this Assembly                                                                                                         
+
+                    NOADATA                                                                                                         
+                      ALIGN                                                                                                         
+3 PARM/OPTION         ASA                                                                                                           
+                      BATCH                                                                                                         
+                      CODEPAGE(047C)                                                                                                
+                    NOCOMPAT                                                                                                        
+                    NODATAMAP                                                                                                       
+                    NODBCS                                                                                                          
+                    NODECK                                                                                                          
+                      DXREF                                                                                                         
+                      ESD                                                                                                           
+                    NOEXIT                                                                                                          
+                      FAIL(NOMSG,NOMNOTE,MAXERRS(500))                                                                              
+                      FLAG(0,ALIGN,CONT,EXLITW,NOIMPLEN,NOLONGER,NOPAGE0,PUSH,RECORD,NOSIGNED,NOSUBSTR,NOTRUNC,USING0)              
+                    NOFOLD                                                                                                          
+                    NOGOFF                                                                                                          
+                    NOINFO                                                                                                          
+                      ILMA                                                                                                          
+                      LANGUAGE(EN)                                                                                                  
+                    NOLIBMAC                                                                                                        
+                      LINECOUNT(60)                                                                                                 
+                      LIST(121)                                                                                                     
+                      MACHINE(,NOLIST)                                                                                              
+                      MXREF(SOURCE)                                                                                                 
+                      OBJECT                                                                                                        
+                      OPTABLE(UNI,NOLIST)                                                                                           
+                    NOPCONTROL                                                                                                      
+                    NOPESTOP                                                                                                        
+                    NOPROFILE                                                                                                       
+                    NORA2                                                                                                           
+                    NORENT                                                                                                          
+                      RLD                                                                                                           
+                      RXREF                                                                                                         
+                      SECTALGN(8)                                                                                                   
+                      SIZE(MAX)                                                                                                     
+                    NOSUPRWARN                                                                                                      
+                      SYSPARM()                                                                                                     
+                    NOTERM                                                                                                          
+                    NOTEST                                                                                                          
+                      THREAD                                                                                                        
+                    NOTRANSLATE                                                                                                     
+                      TYPECHECK(MAGNITUDE,REGISTER)                                                                                 
+                      USING(NOLIMIT,MAP,WARN(15))                                                                                   
+                    NOWORKFILE                                                                                                      
+                      XREF(SHORT,UNREFS)                                                                                            
+                                                                                                                                    
+  No Overriding DD Names                                                                                                            
+
+                                              External Symbol Dictionary                                       Page    2            
+
+
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                            HLASM R6.0  2020/11/09 22.36            
+
+ENDOWMT3  SD 00000001 00000000 000007D0             00                                                                              
+
+                                                                                                               Page    3            
+  Active Usings: None                                                                                                               
+
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2020/11/09 22.36            
+
+                                      1                PRINT  NOGEN                MACRO CALL SUPPRESSION                           
+                                      2 **********************************************************************                      
+                                      3 *                                                                    *                      
+                                      4 * PROGRAM:    ENDOWMT3                                               *                      
+                                      5 * AUTHOR:     CODY MCANTIRE                                          *                      
+                                      6 * DATE:       11/06/2020                                             *                      
+                                      7 *                                                                    *                      
+                                      8 * FUNCTION:  THIS PROGRAM READS INPUT DATA RECORDS AND THEN WRITES   *                      
+                                      9 *            THEM TO STANDARD OUTPUT.                                *                      
+                                     10 *                                                                    *                      
+                                     11 * INPUT:     INPUT - THE INPUT DATA RECORDS READ IN.                 *                      
+                                     12 *                                                                    *                      
+                                     13 * OUTPUT:    OUTPUT - THE INPUT DATA RECORDS WRITTEN OUT.            *                      
+                                     14 *                                                                    *                      
+                                     15 **********************************************************************                      
+000000                00000 00036    16 $INSTREC DSECT                                                                              
+000000                               17 $INSTNME DS    CL30                   INSTITUTION NAME                                      
+00001E                               18 $ICGPCT1 DS    ZL6                    CAP GAINS PCT 1                                       
+000024                               19 $ICGPCT2 DS    ZL6                    CAP GAINS PCT 2                                       
+00002A                               20 $ICGPCT3 DS    ZL6                    CAP GAINS PCT 3                                       
+000030                               21 $ICGPCT4 DS    ZL6                    CAP GAINS PCT 4                                       
+                                     22 *                                                                                           
+000000                00000 00050    23 $TRANREC DSECT                                                                              
+000000                               24 $ORCHNME DS    CL45                   ORCHESTRA NAME                                        
+00002D                               25 $ENDAMT  DS    ZL11                   ENDOWMENT AMOUNT                                      
+000038                               26 $CGPFLG  DS    CL1                    CAP GAIN PCT FLG                                      
+000039                               27 $TRANTYP DS    CL1                    TRANS TYPE                                            
+00003A                               28 $ENDCAMT DS    ZL11                   ENDOWMENT CHAGE AMOUNT                                
+000045                               29 $ENDULMT DS    ZL11                   ENDOWMENT USUFRUCTURARY LIMIT                         
+000000                00000 007D0    30 ENDOWMT3 CSECT                        BEGIN ENDOWMT3                                        
+                                     31 *                                                                                           
+000000 90EC D00C            0000C    32          STM   14,12,12(13)          SAVE CALLER'S REGS                                     
+000004 18CF                          33          LR    12,15                 SET R12 TO R15                                         
+                 R:C  00000          34          USING ENDOWMT3,12           ESTABLISH R12 AS 1ST BASE REG                          
+000006 41E0 C480            00480    35          LA    14,REGSAVE            R14 -> CURRENT SAVE AREA                               
+00000A 50D0 E004            00004    36          ST    13,4(,14)             SAVE CALLER'S SAVE AREA ADDR                           
+00000E 50E0 E008            00008    37          ST    14,8(,14)             SAVE CURRENT SAVE AREA ADDR                            
+000012 18DE                          38          LR    13,14                 R13 -> CURRENT SAVE AREA                               
+                                     39 *                                                                                           
+000014 41B0 CFFF            00FFF    40          LA    11,4095(,12)          SET R11                                                
+000018 41B0 B001            00001    41          LA    11,1(,11)             SET R11                                                
+                 R:B  01000          42          USING ENDOWMT3+4096,11      ESTABLISH R11 AS BASEREG                               
+                                     43 *                                                                                           
+00001C 4D10 C024            00024    44          OPEN  (TRANDCB,(INPUT))     OPEN INPUT FILE                                        
+000026 12FF                          51          LTR   15,15                 CHECK FOR SUCCESSFUL OPEN                              
+000028 4780 C03C            0003C    52          BZ    OPENOK1               BRANCH IF SUCCESSFUL TO OPENOK1                        
+00002C 4110 00DE            000DE    53          ABEND 222,DUMP              ABEND IF OPEN FAILS & DISPLAY 222                      
+                                     63 *                                                                                           
+00003C 4D10 C044            00044    64 OPENOK1  OPEN  (LEDCB,(OUTPUT))      OPEN OUTPUT LOW ENDOWMT FILE                           
+000046 12FF                          71          LTR   15,15                 CHECK FOR SUCCESSFUL OPEN                              
+000048 4780 C05C            0005C    72          BZ    OPENOK2               BRANCH IF SUCCESSFUL TO OPENOK2                        
+00004C 4110 014D            0014D    73          ABEND 333,DUMP              ABEND IF OPEN FAILS & DISPLAY 333                      
+                                     83 *                                                                                           
+00005C 4D10 C064            00064    84 OPENOK2  OPEN  (RPTDCB,(OUTPUT))     OPEN OUTPUT FILE                                       
+000066 12FF                          91          LTR   15,15                 CHECK FOR SUCCESSFUL OPEN                              
+
+                                                                                                               Page    4            
+  Active Usings: ENDOWMT3+X'1000',R11  ENDOWMT3,R12                                                                                 
+
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2020/11/09 22.36            
+
+000068 4780 C07C            0007C    92          BZ    OPENOK3               BRANCH IF SUCCESSFUL TO OPENOK3                        
+00006C 4110 01BC            001BC    93          ABEND 444,DUMP              ABEND IF OPEN FAILS & DISPLAY 444                      
+                                    103 *                                                                                           
+00007C 4130 C500            00500   104 OPENOK3  LA    3,RECORD              SET R3 TO RECORD                                       
+                 R:3  00000         105          USING $INSTREC,3                                                                   
+000080 4110 C6A0            006A0   106          GET  TRANDCB,RECORD         READ THE FIRST INSTITUTION RECOR                       
+                                    117 *                                                                                           
+000090 D21D C652 3000 00652 00000   118          MVC   OINSTNME(30),$INSTNME  MOVE INSTITUTION NAME TO HEADER                       
+                                    119 *                                                                                           
+000096 F235 C4C8 301E 004C8 0001E   120          PACK  PCGPCT1(4),$ICGPCT1(6) PACK CAP GAINS PCT 1                                  
+00009C F235 C4CC 3024 004CC 00024   121          PACK  PCGPCT2(4),$ICGPCT2(6) PACK CAP GAINS PCT 2                                  
+0000A2 F235 C4D0 302A 004D0 0002A   122          PACK  PCGPCT3(4),$ICGPCT3(6) PACK CAP GAINS PCT 3                                  
+0000A8 F235 C4D4 3030 004D4 00030   123          PACK  PCGPCT4(4),$ICGPCT4(6) PACK CAP GAINS PCT 4                                  
+                                    124 *                                                                                           
+                                    125          DROP  3                      DROP ADDRESSIBILITY                                   
+                                    126 *                                                                                           
+                 R:3  00000         127          USING $TRANREC,3             ESABLISH ADDRESSIBILITY                               
+                                    128 *                                                                                           
+0000AE 4120 0063            00063   129          LA    2,99                   SET R2 TO 99                                          
+                                    130 *                                                                                           
+0000B2 4110 C6A0            006A0   131          GET   TRANDCB,RECORD         READ IN FIRST TRAN RECORD                             
+0000C2 95E8 C700      00700         142 LOOP1    CLI   EOFFLAG1,C'Y'          CHECK FOR END OF INPUT DATA                           
+                                    143 *                                                                                           
+0000C6 4780 C384            00384   144          BE    ENDLOOP1              BRANCH TO ENDLOOP1 IF EOF                              
+                                    145 *                                                                                           
+0000CA 9240 C598      00598         146          MVI   RPTLINE+1,C' '        SETS OUTPUT DETAIL LINE                                
+0000CE D282 C599 C598 00599 00598   147          MVC   RPTLINE+2(131),RPTLINE+1    TO SPACES                                        
+                                    148 *                                                                                           
+0000D4 D22C C598 3000 00598 00000   149          MVC   OORCHNME(45),$ORCHNME  MOVE FROM INPUT DATA TO PRINT                         
+                                    150 *                                                                                           
+0000DA F25A C4D8 302D 004D8 0002D   151          PACK  PENDAMT(6),$ENDAMT(11) PACK ENDOWMENT AMOUNT                                 
+                                    152 *                                                                                           
+0000E0 4110 C5DA            005DA   153          LA    1,OENDAMT+11           PRESET R1                                             
+0000E4 D20E C5CF C420 005CF 00420   154          MVC   OENDAMT(15),=X'402020206B2020206B2021204B2020'                               
+0000EA DF0E C5CF C4D8 005CF 004D8   155          EDMK  OENDAMT(15),PENDAMT    EDIT END AMOUNT                                       
+0000F0 0610                         156          BCTR  1,0                    DECREMENT R1 BY 1                                     
+0000F2 925B 1000      00000         157          MVI   0(1),C'$'              MOVING $ IN ENDAMT                                    
+                                    158 *                                                                                           
+0000F6 95C3 3039      00039         159          CLI   $TRANTYP,C'C'          CHECK C FOR CAP GAINS                                 
+0000FA 4770 C168            00168   160          BNE   NOTCG                  OUTPUT RETURN REASON N STOP                           
+                                    161 *                                                                                           
+0000FE D20B C5E3 C3C0 005E3 003C0   162          MVC   OTRANTYP(12),=C'REINVESTMENT'                                                
+                                    163 *                                                                                           
+000104 95F1 3038      00038         164          CLI   $CGPFLG,C'1'           CHECK FLAG 1                                          
+000108 4770 C112            00112   165          BNE   NOT1                   BRANCH NOT 1                                          
+00010C F833 C4F2 C4C8 004F2 004C8   166          ZAP   PCGTEMP(4),PCGPCT1(4)  PCGPCT1 TO PCGTEMP                                    
+                                    167 *        B     CGDONE                 BRANCH TO CGDONE                                      
+000112 95F2 3038      00038         168 NOT1     CLI   $CGPFLG,C'2'           CHECK IF FLAG 2                                       
+000116 4770 C124            00124   169          BNE   NOT2                   BRANCH NOT 2                                          
+00011A F833 C4F2 C4CC 004F2 004CC   170          ZAP   PCGTEMP(4),PCGPCT2(4)  PCGPCT2 TO PCGTEMP                                    
+000120 47F0 C140            00140   171          B     CGDONE                 BRANCH TO CGDONE                                      
+000124 95F3 3038      00038         172 NOT2     CLI   $CGPFLG,C'3'           CHECK IF FLAG 3                                       
+000128 4770 C136            00136   173          BNE   NOT3                   BRANCH NOT 3                                          
+00012C F833 C4F2 C4D0 004F2 004D0   174          ZAP   PCGTEMP(4),PCGPCT3(4)  PCGPCT3 TO PCGTEMP                                    
+000132 47F0 C140            00140   175          B     CGDONE                 BRANCH TO CGDONE                                      
+
+                                                                                                               Page    5            
+  Active Usings: $TRANREC,R3  ENDOWMT3+X'1000',R11  ENDOWMT3,R12                                                                    
+
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2020/11/09 22.36            
+
+000136 F833 C4F2 C4D4 004F2 004D4   176 NOT3     ZAP   PCGTEMP(4),PCGPCT4(4)  PCGPCT4 TO PCGTEMP                                    
+00013C 47F0 C140            00140   177          B     CGDONE                 BRANCH TO CGDONE                                      
+000140 F895 C4F6 C4D8 004F6 004D8   178 CGDONE   ZAP   PCALC(10),PENDAMT(6)   PREP TO CALCULATE CAP GAINS                           
+000146 FC93 C4F6 C4F2 004F6 004F2   179          MP    PCALC(10),PCGTEMP(4)   MULTIPLY BY CAP GAINS PCT                             
+00014C F095 C4F6 003B 004F6 0003B   180          SRP   PCALC(10),64-5,5       SHIFT TO 2 DECIMAL PLACES                             
+                                    181 *                                                                                           
+000152 4110 C5FF            005FF   182          LA    1,OENDCAMT+11          PRESET R1                                             
+000156 D20E C5F4 C420 005F4 00420   183          MVC   OENDCAMT(15),=X'402020206B2020206B2021204B2020'                              
+00015C DF0E C5F4 C4FA 005F4 004FA   184          EDMK  OENDCAMT(15),PCALC+4   EDIT END AMOUNT TO DETAIL                             
+000162 0610                         185          BCTR  1,0                    DECREMENT R1 BY 1                                     
+000164 925B 1000      00000         186          MVI   0(1),C'$'              MOVE IN $                                             
+                                    187 *                                                                                           
+000168 95C4 3039      00039         188 NOTCG    CLI   $TRANTYP,C'D'            CHECK CASE D                                        
+00016C 4770 C1B4            001B4   189          BNE   NOTDEP                   BRANCH NOTDEP                                       
+000170 F25A C4DE 303A 004DE 0003A   190          PACK  PENDCAMT(6),$ENDCAMT(11) PACK ENDC AMOUNT                                    
+000176 F855 C4EC C4D8 004EC 004D8   191          ZAP   PNENDAMT(6),PENDAMT(6)   ENDOWMENT AMOUNT TO NEW AMT                         
+00017C FA55 C4EC C4DE 004EC 004DE   192          AP    PNENDAMT(6),PENDCAMT(6)  ADD IN ENDOW AMOUNT                                 
+000182 D20B C5E3 C3CC 005E3 003CC   193          MVC   OTRANTYP(12),=C'DEPOSIT     '                                                
+000188 4110 C5FF            005FF   194          LA    1,OENDCAMT+11            PRESET R1                                           
+00018C D20E C5F4 C420 005F4 00420   195          MVC   OENDCAMT(15),=X'402020206B2020206B2021204B2020'                              
+000192 DF0E C5F4 C4DE 005F4 004DE   196          EDMK  OENDCAMT(15),PENDCAMT    EDIT END AMOUNT TO DETAIL                           
+000198 0610                         197          BCTR  1,0                      DECREMENT R1 BY 1                                   
+00019A 925B 1000      00000         198          MVI   0(1),C'$'                MOVE IN $                                           
+                                    199 *                                                                                           
+00019E 4110 C615            00615   200          LA    1,ONENDAMT+11           PRESET R1                                            
+0001A2 D20E C60A C420 0060A 00420   201          MVC   ONENDAMT(15),=X'402020206B2020206B2021204B2020'                              
+0001A8 DF0E C60A C4EC 0060A 004EC   202          EDMK  ONENDAMT(15),PNENDAMT   EDIT END AMOUNT TO DETAIL                            
+0001AE 0610                         203          BCTR  1,0                     DECREMENT R1 BY 1                                    
+0001B0 925B 1000      00000         204          MVI   0(1),C'$'               MOVE IN $                                            
+                                    205 *                                                                                           
+0001B4 95E6 3039      00039         206 NOTDEP   CLI   $TRANTYP,C'W'            CHECK CASE W                                        
+0001B8 4770 C232            00232   207          BNE   NOTWITH                  BRANCH IF NOT WITH                                  
+0001BC D20B C5E3 C3D8 005E3 003D8   208          MVC   OTRANTYP(12),=C'WITHDRAWAL  '  DISPLAY WITHDRAWL                             
+0001C2 F25A C4E4 3045 004E4 00045   209          PACK  PENDULMT(6),$ENDULMT(11) PACK ENDUL AMOUNT                                   
+0001C8 F25A C4DE 303A 004DE 0003A   210          PACK  PENDCAMT(6),$ENDCAMT(11) PACK ENDC AMOUNT                                    
+0001CE F855 C4EC C4D8 004EC 004D8   211          ZAP   PNENDAMT(6),PENDAMT(6)   PACKENDOW AMOUNT TO NEW AMT                         
+0001D4 FB55 C4EC C4DE 004EC 004DE   212          SP    PNENDAMT(6),PENDCAMT(6)  ENDC AMT TO NEW ENDOW AMT                           
+0001DA F955 C4EC C4E4 004EC 004E4   213          CP    PNENDAMT(6),PENDULMT(6)  IS ENDOW LOW                                        
+0001E0 4740 C216            00216   214          BL    WITH                     BRANCH WITH                                         
+0001E4 4110 C615            00615   215          LA    1,ONENDAMT+11            PRESET R1                                           
+0001E8 D20E C60A C420 0060A 00420   216          MVC   ONENDAMT(15),=X'402020206B2020206B2021204B2020'                              
+0001EE DF0E C60A C4EC 0060A 004EC   217          EDMK  ONENDAMT(15),PNENDAMT    EDIT END AMOUNT TO DETAIL                           
+0001F4 0610                         218          BCTR  1,0                      DECREMENT R1 BY 1                                   
+0001F6 925B 1000      00000         219          MVI   0(1),C'$'                MOVE IN $                                           
+0001FA D201 C603 C404 00603 00404   220          MVC   ONEGATI(2),=C'DB'        MOVE IN DB                                          
+                                    221 *                                                                                           
+000200 4110 C5FF            005FF   222          LA    1,OENDCAMT+11            PRESET R1                                           
+000204 D20E C5F4 C420 005F4 00420   223          MVC   OENDCAMT(15),=X'402020206B2020206B2021204B2020'                              
+00020A DF0E C5F4 C4DE 005F4 004DE   224          EDMK  OENDCAMT(15),PENDCAMT    EDIT AMOUNT                                         
+000210 0610                         225          BCTR  1,0                      DECREMENT R1 BY 1                                   
+000212 925B 1000      00000         226          MVI   0(1),C'$'                MOVE IN $                                           
+                                    227 *                                                                                           
+000216 D217 C5E3 C3A8 005E3 003A8   228 WITH     MVC   OTRANTYP(24),=C'WITHDRAWAL NOT PROCESSED'                                    
+00021C 4110 C615            00615   229          LA    1,ONENDAMT+11            PRESET R1                                           
+000220 D20E C60A C420 0060A 00420   230          MVC   ONENDAMT(15),=X'402020206B2020206B2021204B2020'                              
+
+                                                                                                               Page    6            
+  Active Usings: $TRANREC,R3  ENDOWMT3+X'1000',R11  ENDOWMT3,R12                                                                    
+
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2020/11/09 22.36            
+
+000226 DF0E C60A C4D8 0060A 004D8   231          EDMK  ONENDAMT(15),PENDAMT     EDIT AMOUNT                                         
+00022C 0610                         232          BCTR  1,0                      DECREMENT R1 BY 1                                   
+00022E 925B 1000      00000         233          MVI   0(1),C'$'                MOVE IN $                                           
+                                    234 *                                                                                           
+000232 95C5 3039      00039         235 NOTWITH  CLI   $TRANTYP,C'E'            CHECK IF FLAG E                                     
+000236 4770 C2B0            002B0   236          BNE   NOTEXCHG                 IF NOT BRANCH NOT EXCHANGE                          
+00023A D20B C5E3 C3E4 005E3 003E4   237          MVC   OTRANTYP(12),=C'EXCHANGE OUT'                                                
+000240 F25A C4E4 3045 004E4 00045   238          PACK  PENDULMT(6),$ENDULMT(11) PACK ENDULMT                                        
+000246 F25A C4DE 303A 004DE 0003A   239          PACK  PENDCAMT(6),$ENDCAMT(11) PACK ENDC AMOUNT                                    
+00024C F855 C4EC C4D8 004EC 004D8   240          ZAP   PNENDAMT(6),PENDAMT(6)   ENDOW AMOUNT TO NEW ENDAMT                          
+000252 FB55 C4EC C4DE 004EC 004DE   241          SP    PNENDAMT(6),PENDCAMT(6)  ENDC AMT TO NEW ENDOW AMT                           
+000258 F955 C4EC C4E4 004EC 004E4   242          CP    PNENDAMT(6),PENDULMT(6)  IS PENDUL AMT LOW                                   
+00025E 4740 C294            00294   243          BL    EXCHG                    BRANCH EXCHG                                        
+000262 4110 C615            00615   244          LA    1,ONENDAMT+11            PRESET R1                                           
+000266 D20E C60A C420 0060A 00420   245          MVC   ONENDAMT(15),=X'402020206B2020206B2021204B2020'                              
+00026C DF0E C60A C4EC 0060A 004EC   246          EDMK  ONENDAMT(15),PNENDAMT    EDIT AMOUNT                                         
+000272 0610                         247          BCTR  1,0                      DECREMENT R1                                        
+000274 925B 1000      00000         248          MVI   0(1),C'$'                MOVE IN $                                           
+000278 D201 C603 C404 00603 00404   249          MVC   ONEGATI(2),=C'DB'                                                            
+                                    250 *                                                                                           
+00027E 4110 C5FF            005FF   251          LA    1,OENDCAMT+11            PRESET R1                                           
+000282 D20E C5F4 C420 005F4 00420   252          MVC   OENDCAMT(15),=X'402020206B2020206B2021204B2020'                              
+000288 DF0E C5F4 C4DE 005F4 004DE   253          EDMK  OENDCAMT(15),PENDCAMT    EDIT AMOUNT                                         
+00028E 0610                         254          BCTR  1,0                      DECREMENT R1                                        
+000290 925B 1000      00000         255          MVI   0(1),C'$'                MOVE IN $                                           
+                                    256 *                                                                                           
+000294 D219 C5E3 C406 005E3 00406   257 EXCHG    MVC   OTRANTYP(26),=C'EXCHANGE OUT NOT PROCESSED'                                  
+00029A 4110 C615            00615   258          LA    1,ONENDAMT+11            PRESET R1                                           
+00029E D20E C60A C420 0060A 00420   259          MVC   ONENDAMT(15),=X'402020206B2020206B2021204B2020'                              
+0002A4 DF0E C60A C4D8 0060A 004D8   260          EDMK  ONENDAMT(15),PENDAMT     EDIT AMOUNT                                         
+0002AA 0610                         261          BCTR  1,0                      DECREMENT R1                                        
+0002AC 925B 1000      00000         262          MVI   0(1),C'$'                MOVE IN $                                           
+                                    263 *                                                                                           
+0002B0 95E3 3039      00039         264 NOTEXCHG CLI   $TRANTYP,C'T'                                                                
+0002B4 4770 C32E            0032E   265          BNE   NOTTRAN                  IF NOT BRANCH NOT TRAN                              
+0002B8 D20B C5E3 C3F0 005E3 003F0   266          MVC   OTRANTYP(12),=C'TRANSFER OUT'                                                
+0002BE F25A C4E4 3045 004E4 00045   267          PACK  PENDULMT(6),$ENDULMT(11) PACK ENDULMENT                                      
+0002C4 F25A C4DE 303A 004DE 0003A   268          PACK  PENDCAMT(6),$ENDCAMT(11) PACK ENDCAMT                                        
+0002CA F855 C4EC C4D8 004EC 004D8   269          ZAP   PNENDAMT(6),PENDAMT(6)   PENDOW AMOUNT TO NEW AMT                            
+0002D0 FB55 C4EC C4DE 004EC 004DE   270          SP    PNENDAMT(6),PENDCAMT(6)  OLD TO NEW                                          
+0002D6 F955 C4EC C4E4 004EC 004E4   271          CP    PNENDAMT(6),PENDULMT(6)  OLD TO NEW                                          
+0002DC 4740 C312            00312   272          BL    TRAN                     BRANCH TO TRAN                                      
+0002E0 4110 C615            00615   273          LA    1,ONENDAMT+11            PRESET R1                                           
+0002E4 D20E C60A C420 0060A 00420   274          MVC   ONENDAMT(15),=X'402020206B2020206B2021204B2020'                              
+0002EA DF0E C60A C4EC 0060A 004EC   275          EDMK  ONENDAMT(15),PNENDAMT    EDIT AMOUNT                                         
+0002F0 0610                         276          BCTR  1,0                      DECREMENT R1                                        
+0002F2 925B 1000      00000         277          MVI   0(1),C'$'                MOVE IN $                                           
+0002F6 D201 C603 C404 00603 00404   278          MVC   ONEGATI(2),=C'DB'                                                            
+                                    279 *                                                                                           
+0002FC 4110 C5FF            005FF   280          LA    1,OENDCAMT+11            PRESET R1                                           
+000300 D20E C5F4 C420 005F4 00420   281          MVC   OENDCAMT(15),=X'402020206B2020206B2021204B2020'                              
+000306 DF0E C5F4 C4DE 005F4 004DE   282          EDMK  OENDCAMT(15),PENDCAMT    EDIT AMOUNT                                         
+00030C 0610                         283          BCTR  1,0                                                                          
+00030E 925B 1000      00000         284          MVI   0(1),C'$'                                                                    
+                                    285 *                                                                                           
+
+                                                                                                               Page    7            
+  Active Usings: $TRANREC,R3  ENDOWMT3+X'1000',R11  ENDOWMT3,R12                                                                    
+
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2020/11/09 22.36            
+
+000312 D21A C5E3 C42F 005E3 0042F   286 TRAN     MVC   OTRANTYP(27),=C'TRANSFER OUT NOT PROCESSED '                                 
+000318 4110 C615            00615   287          LA    1,ONENDAMT+11            PRESET R1                                           
+00031C D20E C60A C420 0060A 00420   288          MVC   ONENDAMT(15),=X'402020206B2020206B2021204B2020'                              
+000322 DF0E C60A C4D8 0060A 004D8   289          EDMK  ONENDAMT(15),PENDAMT     EDIT AMOUNT                                         
+000328 0610                         290          BCTR  1,0                                                                          
+00032A 925B 1000      00000         291          MVI   0(1),C'$'                                                                    
+                                    292 *                                                                                           
+00032E 5920 C3FC            003FC   293 NOTTRAN  C     2,=F'16'                                                                     
+000332 4740 C35A            0035A   294          BL    NOHDRS                                                                       
+                                    295 *                                                                                           
+000336 FA10 C4EA C44A 004EA 0044A   296          AP    PPAGECTR(2),=PL1'1'    ADD 1 TO PAGE CTR                                     
+00033C D203 C550 C400 00550 00400   297          MVC   OPAGECTR(4),=X'40202120'   MOVE IN EDIT PATTERN                              
+000342 DE03 C550 C4EA 00550 004EA   298          ED    OPAGECTR(4),PPAGECTR                                                         
+000348 4110 C770            00770   299          PUT   RPTDCB,HEADER1                                                               
+000358 1B22                         310          SR    2,2                                                                          
+                                    311 *                                                                                           
+00035A 4110 C770            00770   312 NOHDRS   PUT   RPTDCB,RPTLINE        WRITE THE PRINT DATA                                   
+00036A 4120 2001            00001   323          LA    2,1(,2)                ADD 1 TO LINE CTR                                     
+                                    324 *                                                                                           
+00036E 4110 C6A0            006A0   325          GET   TRANDCB,RECORD          GET THE NEXT RECORD                                  
+                                    336 *                                                                                           
+00037E 47F0 C0C2            000C2   337          B     LOOP1                 BRANCH TO TOP OF LOOP1                                 
+                                    338 *                                                                                           
+000382 0700                         339 ENDLOOP1 CLOSE (TRANDCB,,LEDCB,,RPTDCB)       CLOSE THE TWO DCBs                            
+                                    350 *                                                                                           
+                                    351          DROP   3                                                                           
+000396 1BFF                         352          SR    15,15                 SET RC TO 0                                            
+000398 58D0 D004            00004   353          L     13,4(,13)             R13 -> CALLER'S SAVE AREA                              
+00039C 58E0 D00C            0000C   354          L     14,12(,13)            RESTORE R14                                            
+0003A0 980C D014            00014   355          LM    0,12,20(13)           RESTORE R0 THROUGH R12                                 
+                                    356 *                                                                                           
+0003A4 07FE                         357          BR    14                    RETURN TO CALLER                                       
+                                    358 *                                                                                           
+0003A8                              359          LTORG                       LTORG TO ORGANIZE LITERALS                             
+0003A8 E6C9E3C8C4D9C1E6             360                =C'WITHDRAWAL NOT PROCESSED'                                                 
+0003C0 D9C5C9D5E5C5E2E3             361                =C'REINVESTMENT'                                                             
+0003CC C4C5D7D6E2C9E340             362                =C'DEPOSIT     '                                                             
+0003D8 E6C9E3C8C4D9C1E6             363                =C'WITHDRAWAL  '                                                             
+0003E4 C5E7C3C8C1D5C7C5             364                =C'EXCHANGE OUT'                                                             
+0003F0 E3D9C1D5E2C6C5D9             365                =C'TRANSFER OUT'                                                             
+0003FC 00000010                     366                =F'16'                                                                       
+000400 40202120                     367                =X'40202120'                                                                 
+000404 C4C2                         368                =C'DB'                                                                       
+000406 C5E7C3C8C1D5C7C5             369                =C'EXCHANGE OUT NOT PROCESSED'                                               
+000420 402020206B202020             370                =X'402020206B2020206B2021204B2020'                                           
+00042F E3D9C1D5E2C6C5D9             371                =C'TRANSFER OUT NOT PROCESSED '                                              
+00044A 1C                           372                =PL1'1'                                                                      
+                                    373 *                                                                                           
+00044B                0044B 00460   374          ORG   ENDOWMT3+((*-ENDOWMT3+31)/32)*32                                             
+000460 5C40D7D9D6C7D9C1             375          DC    C'* PROGRAM STORAGE FOR ENDOWMT3*'                                           
+                                    376 *                                                                                           
+00047F 00                                                                                                                           
+000480 FFFFFFFFFFFFFFFF             377 REGSAVE  DC    18F'-1'                MAINREGS FOR STANDARD LINKAGE                         
+                                    378 *                                                                                           
+0004C8 0000000C                     379 PCGPCT1  DC    PL4'0'                  FIRST CAP GAINS PCT                                  
+
+                                                                                                               Page    8            
+  Active Usings: ENDOWMT3+X'1000',R11  ENDOWMT3,R12                                                                                 
+
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2020/11/09 22.36            
+
+0004CC 0000000C                     380 PCGPCT2  DC    PL4'0'                  SECOND CAP GAINS PCT                                 
+0004D0 0000000C                     381 PCGPCT3  DC    PL4'0'                  THIRD CAP GAINS PCT                                  
+0004D4 0000000C                     382 PCGPCT4  DC    PL4'0'                  FOURTH CAP GAINS PCT                                 
+0004D8 00000000000C                 383 PENDAMT  DC    PL6'0'                  PACKED ENDOWMENT AMOUNT                              
+0004DE 00000000000C                 384 PENDCAMT DC    PL6'0'                  PACKED ENDOWMENT CHANGE AMOUNT                       
+0004E4 00000000000C                 385 PENDULMT DC    PL6'0'                  PACKED USUFRUCTUARY LIMIT                            
+0004EA 000C                         386 PPAGECTR DC    PL2'0'                  PACKED PAGE COUNTER                                  
+0004EC 00000000000C                 387 PNENDAMT DC    PL6'0'                  PACKED NEW ENDOWMENT AMOUNT                          
+0004F2 0000000C                     388 PCGTEMP  DC    PL4'0'                  TEMP CAP GAINS PCT                                   
+0004F6 0000000000000000             389 PCALC    DC    PL10'0'                 PCALC                                                
+                                    390 *                                                                                           
+000500 7C7C7C7C7C7C7C7C             391 RECORD   DC    80C'@'                  INPUT BUFFER FILL WITH '@'                           
+                                    392 *                                                                                           
+000550                              393 OPAGECTR DS    CL4                     OUT PAGE COUNTER                                     
+                                    394 *                                                                                           
+                                    395 *                                                                                           
+000554 FFFFFFFFFFFFFFFF             396 DATETIME DC    4F'-1'                  DATE AND TIME STORAGE                                
+000564 4040404040404040             397          DC    51C' '                  STORAGE FILLER                                       
+000597 F0                           398 RPTLINE  DC    CL1'0'                  RPTLINE CARRIAGE CONTROL                             
+000598 4040404040404040             399 OORCHNME DC    45C' '                  45 BYTE STORAGE FOR PRINTING                         
+0005C5 4040404040404040             400          DC    10C' '                  FILLER                                               
+0005CF                              401 OENDAMT  DS    CL15                    OUT ENDOWMENT AMOUNT                                 
+0005DE 4040404040                   402          DC    5C' '                   FILLER FOR PRINT RECORD                              
+0005E3                              403 OTRANTYP DS    CL12                    OUT TRANS TYPE                                       
+0005EF 4040404040                   404          DC    5C' '                   FILLER                                               
+0005F4                              405 OENDCAMT DS    CL15                    OUT ENDOWMENT C AMOUNT                               
+000603                              406 ONEGATI  DS    CL2                     OUT NEGATIVE                                         
+000605 4040404040                   407          DC    5C' '                   FILLER                                               
+00060A                              408 ONENDAMT DS    CL17                    OUT NEW ENDOWMENT AMOUNT                             
+00061B 404040                       409          DC    3C' '                   FILLER                                               
+                                    410 *                                                                                           
+00061E F1                           411 HEADER1  DC    C'1'                    PAGE                                                 
+00061F 4040404040404040             412          DC    51C' '                  FILLER                                               
+000652                              413 OINSTNME DS    CL30                    TIME                                                 
+000670 4040404040404040             414          DC    41C' '                  FILLER                                               
+000699 D7C1C7C57A40                 415          DC    C'PAGE: '               DISPLAY PAGE INDICATOR                               
+                                    416 *                                                                                           
+                                    417 *  INPUT TRANSACTION DCB                                                                    
+                                    418 *                                                                                           
+                                    419 TRANDCB  DCB   DDNAME=ENDFILE,                                         X                    
+                                                       DEVD=DA,                                                X                    
+                                                       DSORG=PS,                                               X                    
+                                                       MACRF=GM,                                               X                    
+                                                       RECFM=FB,                                               X                    
+                                                       LRECL=80,                                               X                    
+0006A0 0000000000000000                                EODAD=EOFRTN1                                                                
+                                    461 *                                                                                           
+                                    462 *  INPUT DCB'S EOF FLAG AND EOF ROUTINE                                                     
+                                    463 *                                                                                           
+000700 D5                           464 EOFFLAG1  DC    C'N'                 EOFFLAG FOR INPUT FILE                                 
+                                    465 *                                                                                           
+000701 00                                                                                                                           
+000702 92E8 C700      00700         466 EOFRTN1  MVI   EOFFLAG1,C'Y'          SET EOF FLAG TO Y                                     
+000706 07FE                         467          BR    14                    BRANCH TO STMT FOLLOWING GET                           
+
+                                                                                                               Page    9            
+  Active Usings: ENDOWMT3+X'1000',R11  ENDOWMT3,R12                                                                                 
+
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2020/11/09 22.36            
+
+                                    472 *                                                                                           
+                                    473 *  LOW ENDOWMT DCB                                                                          
+                                    474 *                                                                                           
+                                    475 LEDCB  DCB     DDNAME=LEFILE,                                          X                    
+                                                       DEVD=DA,                                                X                    
+                                                       DSORG=PS,                                               X                    
+                                                       MACRF=(GM,PM),                                          X                    
+                                                       RECFM=FB,                                               X                    
+                                                       LRECL=51,                                               X                    
+000708 0000000000000000                                EODAD=EOFRTN2                                                                
+                                    517 *                                                                                           
+                                    518 *  INPUT DCB'S EOF FLAG AND EOF ROUTINE                                                     
+                                    519 *                                                                                           
+000768 D5                           520 EOFFLAG2 DC    C'N'                 EOFFLAG FOR INPUT FILE                                  
+                                    521 *                                                                                           
+000769 00                                                                                                                           
+00076A 92E8 C768      00768         522 EOFRTN2  MVI   EOFFLAG2,C'Y'          SET EOF FLAG TO Y                                     
+00076E 07FE                         523          BR    14                    BRANCH TO STMT FOLLOWING GET                           
+                                    524 *                                                                                           
+                                    525 *  OUTPUT DCB                                                                               
+                                    526 *                                                                                           
+                                    527 RPTDCB   DCB   DDNAME=RPTFILE,                                         X                    
+                                                       DEVD=DA,                                                X                    
+                                                       DSORG=PS,                                               X                    
+                                                       MACRF=PM,                                               X                    
+                                                       RECFM=FBA,                                              X                    
+                                                       LRECL=133,                                              X                    
+000770 0000000000000000                                BLKSIZE=133                                                                  
+                                    569 *                                                                                           
+000000                              570          END   ENDOWMT3                                                                     
+
+                                                 Relocation Dictionary                                         Page   10            
+
+
+   Pos.Id   Rel.Id   Address  Type    Length  Action                                        HLASM R6.0  2020/11/09 22.36            
+
+  00000001 00000001 00000021   A         3       +                                                                                  
+  00000001 00000001 00000041   A         3       +                                                                                  
+  00000001 00000001 00000061   A         3       +                                                                                  
+  00000001 00000001 00000389   A         3       +                                                                                  
+  00000001 00000001 0000038D   A         3       +                                                                                  
+  00000001 00000001 00000391   A         3       +                                                                                  
+  00000001 00000001 000006C1   A         3       +                                                                                  
+  00000001 00000001 00000729   A         3       +                                                                                  
+
+                               Ordinary Symbol and Literal Cross Reference                                     Page   11            
+
+
+Symbol   Length   Value     Id    R Type Asm  Program   Defn References                     HLASM R6.0  2020/11/09 22.36            
+
+$CGPFLG       1 00000038 FFFFFFFE     C  C                26  164   168   172                                                       
+$ENDAMT      11 0000002D FFFFFFFE     Z  Z                25  151                                                                   
+$ENDCAMT     11 0000003A FFFFFFFE     Z  Z                28  190   210   239   268                                                 
+$ENDULMT     11 00000045 FFFFFFFE     Z  Z                29  209   238   267                                                       
+$ICGPCT1      6 0000001E FFFFFFFF     Z  Z                18  120                                                                   
+$ICGPCT2      6 00000024 FFFFFFFF     Z  Z                19  121                                                                   
+$ICGPCT3      6 0000002A FFFFFFFF     Z  Z                20  122                                                                   
+$ICGPCT4      6 00000030 FFFFFFFF     Z  Z                21  123                                                                   
+$INSTNME     30 00000000 FFFFFFFF     C  C                17  118                                                                   
+$INSTREC      1 00000000 FFFFFFFF     J                   16  105U                                                                  
+$ORCHNME     45 00000000 FFFFFFFE     C  C                24  149                                                                   
+$TRANREC      1 00000000 FFFFFFFE     J                   23  127U                                                                  
+$TRANTYP      1 00000039 FFFFFFFE     C  C                27  159   188   206   235   264                                           
+CGDONE        6 00000140 00000001     I                  178  171B  175B  177B                                                      
+ENDLOOP1      4 00000384 00000001     I                  342  144B                                                                  
+ENDOWMT3      1 00000000 00000001     J                   30   34U   42U  374   374   570                                           
+EOFFLAG1      1 00000700 00000001     C  C               464  142   466M                                                            
+EOFFLAG2      1 00000768 00000001     C  C               520  522M                                                                  
+EOFRTN1       4 00000702 00000001     I                  466  436                                                                   
+EOFRTN2       4 0000076A 00000001     I                  522  492                                                                   
+EXCHG         6 00000294 00000001     I                  257  243B                                                                  
+HEADER1       1 0000061E 00000001     C  C               411  306                                                                   
+LEDCB         4 00000708 00000001     F  F               480   69   346                                                             
+LOOP1         4 000000C2 00000001     I                  142  337B                                                                  
+NOHDRS        4 0000035A 00000001     I                  318  294B                                                                  
+NOTCG         4 00000168 00000001     I                  188  160B                                                                  
+NOTDEP        4 000001B4 00000001     I                  206  189B                                                                  
+NOTEXCHG      4 000002B0 00000001     I                  264  236B                                                                  
+NOTTRAN       4 0000032E 00000001     I                  293  265B                                                                  
+NOTWITH       4 00000232 00000001     I                  235  207B                                                                  
+NOT1          4 00000112 00000001     I                  168  165B                                                                  
+NOT2          4 00000124 00000001     I                  172  169B                                                                  
+NOT3          6 00000136 00000001     I                  176  173B                                                                  
+OENDAMT      15 000005CF 00000001     C  C               401  153   154M  155M                                                      
+OENDCAMT     15 000005F4 00000001     C  C               405  182   183M  184M  194   195M  196M  222   223M  224M  251             
+                                                              252M  253M  280   281M  282M                                          
+OINSTNME     30 00000652 00000001     C  C               413  118M                                                                  
+ONEGATI       2 00000603 00000001     C  C               406  220M  249M  278M                                                      
+ONENDAMT     17 0000060A 00000001     C  C               408  200   201M  202M  215   216M  217M  229   230M  231M  244             
+                                                              245M  246M  258   259M  260M  273   274M  275M  287   288M            
+                                                              289M                                                                  
+OORCHNME      1 00000598 00000001     C  C               399  149M                                                                  
+OPAGECTR      4 00000550 00000001     C  C               393  297M  298M                                                            
+OPENOK1       4 0000003C 00000001     I                   67   52B                                                                  
+OPENOK2       4 0000005C 00000001     I                   87   72B                                                                  
+OPENOK3       4 0000007C 00000001     I                  104   92B                                                                  
+OTRANTYP     12 000005E3 00000001     C  C               403  162M  193M  208M  228M  237M  257M  266M  286M                        
+PCALC        10 000004F6 00000001     P  P               389  178M  179M  180M  184                                                 
+PCGPCT1       4 000004C8 00000001     P  P               379  120M  166                                                             
+PCGPCT2       4 000004CC 00000001     P  P               380  121M  170                                                             
+PCGPCT3       4 000004D0 00000001     P  P               381  122M  174                                                             
+PCGPCT4       4 000004D4 00000001     P  P               382  123M  176                                                             
+PCGTEMP       4 000004F2 00000001     P  P               388  166M  170M  174M  176M  179                                           
+PENDAMT       6 000004D8 00000001     P  P               383  151M  155   178   191   211   231   240   260   269   289             
+PENDCAMT      6 000004DE 00000001     P  P               384  190M  192   196   210M  212   224   239M  241   253   268M            
+
+                               Ordinary Symbol and Literal Cross Reference                                     Page   12            
+
+
+Symbol   Length   Value     Id    R Type Asm  Program   Defn References                     HLASM R6.0  2020/11/09 22.36            
+
+                                                              270   282                                                             
+PENDULMT      6 000004E4 00000001     P  P               385  209M  213   238M  242   267M  271                                     
+PNENDAMT      6 000004EC 00000001     P  P               387  191M  192M  202   211M  212M  213   217   240M  241M  242             
+                                                              246   269M  270M  271   275                                           
+PPAGECTR      2 000004EA 00000001     P  P               386  296M  298                                                             
+RECORD        1 00000500 00000001     C  C               391  104   113   138   332                                                 
+REGSAVE       4 00000480 00000001     F  F               377   35                                                                   
+RPTDCB        4 00000770 00000001     F  F               532   89   305   318   348                                                 
+RPTLINE       1 00000597 00000001     C  C               398  146M  147M  147   319                                                 
+TRAN          6 00000312 00000001     I                  286  272B                                                                  
+TRANDCB       4 000006A0 00000001     F  F               424   49   112   137   331   344                                           
+WITH          6 00000216 00000001     I                  228  214B                                                                  
+=C'DB'        2 00000404 00000001     C                  368  220   249   278                                                       
+=C'DEPOSIT     '                                                                                                                    
+             12 000003CC 00000001     C                  362  193                                                                   
+=C'EXCHANGE OUT NOT PROCESSED'                                                                                                      
+             26 00000406 00000001     C                  369  257                                                                   
+=C'EXCHANGE OUT'                                                                                                                    
+             12 000003E4 00000001     C                  364  237                                                                   
+=C'REINVESTMENT'                                                                                                                    
+             12 000003C0 00000001     C                  361  162                                                                   
+=C'TRANSFER OUT NOT PROCESSED '                                                                                                     
+             27 0000042F 00000001     C                  371  286                                                                   
+=C'TRANSFER OUT'                                                                                                                    
+             12 000003F0 00000001     C                  365  266                                                                   
+=C'WITHDRAWAL  '                                                                                                                    
+             12 000003D8 00000001     C                  363  208                                                                   
+=C'WITHDRAWAL NOT PROCESSED'                                                                                                        
+             24 000003A8 00000001     C                  360  228                                                                   
+=F'16'        4 000003FC 00000001     F                  366  293                                                                   
+=PL1'1'       1 0000044A 00000001     P                  372  296                                                                   
+=X'402020206B2020206B2021204B2020'                                                                                                  
+             15 00000420 00000001     X                  370  154   183   195   201   216   223   230   245   252   259             
+                                                              274   281   288                                                       
+=X'40202120'                                                                                                                        
+              4 00000400 00000001     X                  367  297                                                                   
+
+                                  Unreferenced Symbols Defined in CSECTs                                       Page   13            
+
+
+  Defn  Symbol                                                                              HLASM R6.0  2020/11/09 22.36            
+
+   396  DATETIME                                                                                                                    
+
+                                          Macro and Copy Code Source Summary                                   Page   14            
+
+
+ Con Source                                        Volume    Members                        HLASM R6.0  2020/11/09 22.36            
+
+  L1 SYS1.MACLIB                                   VTMVSC    ABEND    CLOSE    DCB      GET      IHBINNRA IHBINNRR                  
+                                                             IHB01    OPEN     PUT      SYSSTATE                                    
+
+                                                Dsect Cross Reference                                          Page   15            
+
+
+Dsect     Length      Id       Defn                                                         HLASM R6.0  2020/11/09 22.36            
+
+$INSTREC 00000036  FFFFFFFF      16                                                                                                 
+$TRANREC 00000050  FFFFFFFE      23                                                                                                 
+
+                                                      Using Map                                                Page   16            
+
+
+                                                                                            HLASM R6.0  2020/11/09 22.36            
+  Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text                      
+          Count      Id           Type          Value    Range     Id        Disp    Stmt                                           
+
+    34  00000006  00000001 USING  ORDINARY    00000000 00001000 00000001  12 00770    522 ENDOWMT3,12                               
+    42  0000001C  00000001 USING  ORDINARY    00001000 00001000 00000001  11 00000        ENDOWMT3+4096,11                          
+   105  00000080  00000001 USING  ORDINARY    00000000 00001000 FFFFFFFF   3 00030    123 $INSTREC,3                                
+   125  000000AE  00000001 DROP                                            3              3                                         
+   127  000000AE  00000001 USING  ORDINARY    00000000 00001000 FFFFFFFE   3 00045    268 $TRANREC,3                                
+   351  00000396  00000001 DROP                                            3              3                                         
+
+                                   General Purpose Register Cross Reference                                    Page   17            
+
+
+ Register  References (M=modified, B=branch, U=USING, D=DROP, N=index)                      HLASM R6.0  2020/11/09 22.36            
+
+    0(0)      32    59M   60M   61    79M   80M   81    99M  100M  101   113M  138M  306M  319M  332M  355M                         
+    1(1)      32    47M   58M   61M   67M   78M   81M   87M   98M  101M  112M  115   137M  140   153M  155M  156M  157              
+             182M  184M  185M  186   194M  196M  197M  198   200M  202M  203M  204   215M  217M  218M  219   222M  224M             
+             225M  226   229M  231M  232M  233   244M  246M  247M  248   251M  253M  254M  255   258M  260M  261M  262              
+             273M  275M  276M  277   280M  282M  283M  284   287M  289M  290M  291   305M  308   318M  321   331M  334              
+             342M  355M                                                                                                             
+    2(2)      32   129M  293   310M  310   323M  323   355M                                                                         
+    3(3)      32   104M  105U  125D  127U  351D  355M                                                                               
+    4(4)      32   355M                                                                                                             
+    5(5)      32   355M                                                                                                             
+    6(6)      32   355M                                                                                                             
+    7(7)      32   355M                                                                                                             
+    8(8)      32   355M                                                                                                             
+    9(9)      32   355M                                                                                                             
+   10(A)      32   355M                                                                                                             
+   11(B)      32    40M   41M   41    42U  355M                                                                                     
+   12(C)      32    33M   34U   40   355M                                                                                           
+   13(D)      32    36    38M  353M  353   354   355                                                                                
+   14(E)      32    35M   36    37    37    38   116M  141M  309M  322M  335M  354M  357B  467B  523B                               
+   15(F)      32    33    51M   51    71M   71    91M   91   114M  114   115M  116B  139M  139   140M  141B  307M  307              
+             308M  309B  320M  320   321M  322B  333M  333   334M  335B  352M  352                                                  
+
+                                  Diagnostic Cross Reference and Assembler Summary                             Page   18            
+
+
+                                                                                            HLASM R6.0  2020/11/09 22.36            
+
+     No Statements Flagged in this Assembly                                                                                         
+HIGH LEVEL ASSEMBLER, 5696-234, RELEASE 6.0, PTF UI61337                                                                            
+
+SYSTEM: z/OS 02.03.00              JOBNAME: KC03I74A    STEPNAME: JSTEP01    PROCSTEP: (NOPROC)                                     
+
+Unicode Module:   ASMA047C   From Page     1148   To Page    17584           ECECP: International 1                                 
+Data Sets Allocated for this Assembly                                                                                               
+ Con DDname   Data Set Name                                Volume  Member                                                           
+  P1 SYSIN    KC03I74.KC03I74A.JOB06307.D0000101.?                                                                                  
+  L1 SYSLIB   SYS1.MACLIB                                  VTMVSC                                                                   
+     SYSLIN   SYS20314.T223620.RA000.KC03I74A.OBJMOD.H01   TEMP00                                                                   
+     SYSPRINT KC03I74.KC03I74A.JOB06307.D0000102.?                                                                                  
+                                                                                                                                    
+  26756K allocated to Buffer Pool       Storage required     544K                                                                   
+    347 Primary Input Records Read         3677 Library Records Read                  0 Work File Reads                             
+      0 ASMAOPT Records Read                606 Primary Print Records Written         0 Work File Writes                            
+     42 Object Records Written                0 ADATA Records Written                                                               
+
+Assembly Start Time: 22.36.21 Stop Time: 22.36.21 Processor Time: 00.00.00.0048                                                     
+Return Code 000                                                                                                                     
+!! END OF JES SPOOL FILE !!
+
+z/OS V2 R3 BINDER     22:36:20 MONDAY NOVEMBER  9, 2020                                                                 
+BATCH EMULATOR  JOB(KC03I74A) STEP(JSTEP02 ) PGM= HEWL                                                                  
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                *** O P E R A T I O N   S U M M A R Y   R E P O R T ***                                 
+                                                                                                                        
+
+PROCESSING OPTIONS:                                                                                                     
+                                                                                                                        
+   ALIASES             NO                                                                                               
+   ALIGN2              NO                                                                                               
+   AMODE               UNSPECIFIED                                                                                      
+   CALL                YES                                                                                              
+   CASE                UPPER                                                                                            
+   COMPAT              UNSPECIFIED                                                                                      
+   COMPRESS            AUTO                                                                                             
+   DCBS                NO                                                                                               
+   DYNAM               NO                                                                                               
+   EXTATTR             UNSPECIFIED                                                                                      
+   EXITS:              NONE                                                                                             
+   FILL                NONE                                                                                             
+   GID                 UNSPECIFIED                                                                                      
+   HOBSET              NO                                                                                               
+   INFO                NO                                                                                               
+   LET                 04                                                                                               
+   LINECT              060                                                                                              
+   LIST                SUMMARY                                                                                          
+   LISTPRIV            NO                                                                                               
+   LONGPARM            NO                                                                                               
+   MAP                 NO                                                                                               
+   MAXBLK              032760                                                                                           
+   MODMAP              NO                                                                                               
+   MSGLEVEL            00                                                                                               
+   OVLY                NO                                                                                               
+   PRINT               YES                                                                                              
+   RES                 NO                                                                                               
+   REUSABILITY         UNSPECIFIED                                                                                      
+   RMODE               UNSPECIFIED                                                                                      
+   RMODEX              NO                                                                                               
+   SIGN                NO                                                                                               
+   STORENX             NOREPLACE                                                                                        
+   STRIPCL             NO                                                                                               
+   STRIPSEC            NO                                                                                               
+   SYMTRACE                                                                                                             
+   TERM                NO                                                                                               
+   TRAP                ON                                                                                               
+   UID                 UNSPECIFIED                                                                                      
+   UPCASE              NO                                                                                               
+   WKSPACE             000000K,000000K                                                                                  
+   XCAL                NO                                                                                               
+   XREF                NO                                                                                               
+   ***END OF OPTIONS***                                                                                                 
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+
+SAVE OPERATION SUMMARY:                                                                                                 
+                                                                                                                        
+   MEMBER NAME         ENDOWMT3                                                                                         
+   LOAD LIBRARY        KC03I74.CSCI465.LOADLIB                                                                          
+   PROGRAM TYPE        PROGRAM OBJECT(FORMAT 2)                                                                         
+   VOLUME SERIAL       KCTR49                                                                                           
+   DISPOSITION         REPLACED                                                                                         
+   TIME OF SAVE        22.36.21  NOV  9, 2020                                                                           
+                                                                                                                        
+                                                                                                                        
+
+SAVE MODULE ATTRIBUTES:                                                                                                 
+                                                                                                                        
+   AC                  000                                                                                              
+   AMODE                24                                                                                              
+   COMPRESSION         NONE                                                                                             
+   DC                  NO                                                                                               
+   EDITABLE            YES                                                                                              
+   EXCEEDS 16MB        NO                                                                                               
+   EXECUTABLE          YES                                                                                              
+   LONGPARM            NO                                                                                               
+   MIGRATABLE          YES                                                                                              
+   OL                  NO                                                                                               
+   OVLY                NO                                                                                               
+   PACK,PRIME          NO,NO                                                                                            
+   PAGE ALIGN          NO                                                                                               
+   REFR                NO                                                                                               
+   RENT                NO                                                                                               
+   REUS                NO                                                                                               
+   RMODE                24                                                                                              
+   SCTR                NO                                                                                               
+   SIGN                NO                                                                                               
+   SSI                                                                                                                  
+   SYM GENERATED       NO                                                                                               
+   TEST                NO                                                                                               
+   XPLINK              NO                                                                                               
+   MODULE SIZE (HEX)   000007D0                                                                                         
+   DASD SIZE (HEX)     00002000                                                                                         
+                                                                                                                        
+                                                                                                                        
+
+ ENTRY POINT AND ALIAS SUMMARY:                                                                                         
+                                                                                                                        
+ NAME:            ENTRY TYPE AMODE C_OFFSET CLASS NAME        STATUS                                                    
+                                                                                                                        
+ ENDOWMT3          MAIN_EP      24 00000000 B_TEXT                                                                      
+                                                                                                                        
+                         *** E N D   O F   O P E R A T I O N   S U M M A R Y   R E P O R T ***                          
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+
+z/OS V2 R3 BINDER     22:36:20 MONDAY NOVEMBER  9, 2020                                                                 
+BATCH EMULATOR  JOB(KC03I74A) STEP(JSTEP02 ) PGM= HEWL                                                                  
+IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  0.                                                                  
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+
+----------------------                                                                                                  
+MESSAGE SUMMARY REPORT                                                                                                  
+----------------------                                                                                                  
+ TERMINAL MESSAGES      (SEVERITY = 16)                                                                                 
+ NONE                                                                                                                   
+                                                                                                                        
+ SEVERE MESSAGES        (SEVERITY = 12)                                                                                 
+ NONE                                                                                                                   
+                                                                                                                        
+ ERROR MESSAGES         (SEVERITY = 08)                                                                                 
+ NONE                                                                                                                   
+                                                                                                                        
+ WARNING MESSAGES       (SEVERITY = 04)                                                                                 
+ NONE                                                                                                                   
+                                                                                                                        
+ INFORMATIONAL MESSAGES (SEVERITY = 00)                                                                                 
+ 2008                                                                                                                   
+                                                                                                                        
+                                                                                                                        
+ **** END OF MESSAGE SUMMARY REPORT ****                                                                                
+                                                                                                                        
+!! END OF JES SPOOL FILE !!
+
+                                                    MUSICIANS' BENEVOLENCE FUNDS                                          PAGE: 
+
+Berlin Philharmonic                                        $936,184.80     DEPOSIT               $36,184.80           $972,369.60   
+
+Vienna Philharmonic                                      $7,166,149.40     DEPOSIT               $66,159.55         $7,232,308.95   
+
+Chicago Symphony Orchestra                                 $808,213.50     WITHDRAWAL NOT PROCESSED                   $808,213.50   
+
+Boston Symphony Orchestra                                $4,008,702.00     REINVESTMENT             $841.83                         
+
+Kansas City Symphony                                        $42,199.90     WITHDRAWAL NOT PROCESSED                    $42,199.90   
+
+New York Philharmonic                                       $40,612.10     DEPOSIT                  $618.10            $41,230.20   
+
+Berlin State Orchestra                                     $133,502.81     REINVESTMENT              $22.70                         
+
+Grand Rapids Symphony Orchestra                          $2,074,303.90     DEPOSIT                $4,303.99         $2,078,607.89   
+
+Seattle Symphony Orchestra                                   $8,415.20     DEPOSIT                $8,713.89            $17,129.09   
+
+Symphony Orchestra of the Bavarian Radio                 $3,108,140.21     EXCHANGE OUT NOT PROCESSED101.21DB       $3,108,140.21   
+
+Orchestra of the German Opera Berlin                       $110,810.27     REINVESTMENT              $18.84                         
+
+Orchestra of Paris                                       $4,310,810.06     REINVESTMENT             $905.27                         
+
+National Orchestra of France                             $2,410,012.15     REINVESTMENT             $313.30                         
+
+London Philharmonic Orchestra                              $140,812.24     WITHDRAWAL NOT PROCESSED                   $140,812.24   
+
+London Symphony Orchestra                                $3,104,812.33     DEPOSIT              $104,823.23         $3,209,635.56   
+
+Philharmonia Orchestra                                     $102,312.42     DEPOSIT                $3,312.42           $105,624.84   
+
+                                                    MUSICIANS' BENEVOLENCE FUNDS                                          PAGE: 
+
+San Francisco Symphony                                     $101,142.56     WITHDRAWAL NOT PROCESSED                   $101,142.56   
+
+Scottish National Orchestra                              $3,104,124.67     TRANSFER OUT NOT PROCESSED               $3,104,124.67   
+
+National Orchestra of Ireland                            $3,108,214.26     TRANSFER OUT NOT PROCESSED 14.00DB       $3,108,214.26   
+
+Czech Philharmonic                                       $3,310,831.45     WITHDRAWAL NOT PROCESSED                 $3,310,831.45   
+
+Munich Philharmonic                                        $512,234.10     DEPOSIT              $512,234.10         $1,024,468.20   
+
+Orchestra of the Vienna State Opera                      $3,300,005.24     REINVESTMENT             $429.00                         
+
+Detroit Symphony                                            $31,116.05     REINVESTMENT               $4.05                         
+
+Cleveland Orchestra                                      $3,103,817.26     REINVESTMENT             $527.65                         
+
+St. Louis Symphony Orchestra                             $3,108,311.27     REINVESTMENT             $404.08                         
+
+Scottish National Orchestra                              $3,108,131.24     EXCHANGE OUT NOT PROCESSED               $3,108,131.24   
+
+Hong Kong Symphony Orchestra                             $3,108,113.23     DEPOSIT            $3,108,113.00         $6,216,226.23   
+
+NHK Symphony Orchestra Tokyo                             $4,606,410.52     REINVESTMENT             $598.83                         
+
+Beijing Philharmonic                                     $1,807,640.81     REINVESTMENT             $234.99                         
+
+Philharmonic Hamburg                                     $6,068,254.17     DEPOSIT            $6,061,154.67        $12,129,408.84   
+
+North German Radio Symphony Orchestra                    $6,086,271.26     WITHDRAWAL NOT PROCESSED                 $6,086,271.26   
+
+Sao Paulo Symphony Orchestra                             $6,082,661.25     REINVESTMENT           $1,277.36                         
+
+                                                    MUSICIANS' BENEVOLENCE FUNDS                                          PAGE: 
+
+Florida Philharmonic                                     $6,982,761.24     DEPOSIT              $982,633.00         $7,965,394.24   
+
+Lucerne Festival Orchestra                              $26,182,816.24     TRANSFER OUT NOT PROCESSED 16.24DB      $26,182,816.24   
+
+Beethoven Orchestra Bonn                                   $608,291.23     REINVESTMENT              $79.08                         
+
+Royal Philharmonic Orchestra                             $4,608,212.33     WITHDRAWAL NOT PROCESSED2,312.42DB       $4,608,212.33   
+
+Orchestra of Opera Lyon                                  $6,408,212.32     DEPOSIT                $1,142.56         $6,409,354.88   
+
+Metropolitan Opera Orchestra                             $6,048,214.21     REINVESTMENT           $1,270.12                         
+
+MET Orchestra                                           $27,144,923.58     REINVESTMENT           $3,528.84                         
+
+Orpheus Chamber Orchestra                                $2,179,162.07     WITHDRAWAL NOT PROCESSED                 $2,179,162.07   
+
+Los Angeles Philharmonic                                 $6,611,022.46     DEPOSIT                $2,234.10         $6,613,256.56   
+
+Berlin Radio Symphony Orchestra                         $10,663,622.50     DEPOSIT                $4,344.67        $10,667,967.17   
+
+Prague Philharmonic                                      $1,166,416.19     TRANSFER OUT NOT PROCESSED               $1,166,416.19   
+
+Bayreuth Festival Orchestra                              $2,216,617.29     WITHDRAWAL NOT PROCESSED2,434.52DB       $2,216,617.29   
+
+Camerata Academica Salzburg                              $1,119,667.89     REINVESTMENT             $190.34                         
+
+La Scala Orchestra Milan                                   $821,144.25     WITHDRAWAL NOT PROCESSED                   $821,144.25   
+
+NBC Symphony Orchestra                                     $132,677.84     DEPOSIT                $2,435.00           $135,112.84   
+
+Des Moines Symphony                                        $133,502.81     REINVESTMENT              $22.70                         
+
+                                                    MUSICIANS' BENEVOLENCE FUNDS                                          PAGE: 
+
+Bamberg Symphony Orchestra                               $2,074,303.90     DEPOSIT                $4,303.99         $2,078,607.89   
+
+Vienna Symphony Orchestra                                    $8,415.20     DEPOSIT                $8,713.89            $17,129.09   
+
+Salzburg Festival Orchestra                              $3,108,140.21     WITHDRAWAL NOT PROCESSED8,101.21DB       $3,108,140.21   
+
+Houston Symphony Orchestra                                 $110,810.27     REINVESTMENT              $18.84                         
+
+Dallas Symphony Orchestra                                $4,310,810.06     REINVESTMENT             $905.27                         
+
+Minnesota Orchestra                                      $2,410,012.15     REINVESTMENT             $313.30                         
+
+City of Bournemouth Symphony Orchestra                     $140,812.24     WITHDRAWAL NOT PROCESSED                   $140,812.24   
+
+Royal Liverpool Philharmonic Orchestra                     $232,325.54     TRANSFER OUT NOT PROCESSED                 $232,325.54   
+
+BBC Philharmonic                                         $3,104,812.33     DEPOSIT              $104,823.23         $3,209,635.56   
+
+BBC Symphony Orchestra of Wales                            $233,920.33     DEPOSIT               $14,839.75           $248,760.08   
+
+Juilliard School of Music Symphony Orchestra               $102,312.42     DEPOSIT                $3,312.42           $105,624.84   
+
+Orchestra of St. Lukes                                     $101,142.56     EXCHANGE OUT NOT PROCESSED                 $101,142.56   
+
+Singapore Symphony Orchestra                               $101,142.56     WITHDRAWAL NOT PROCESSED                   $101,142.56   
+!! END OF JES SPOOL FILE !!

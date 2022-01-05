@@ -1,0 +1,1039 @@
+                   J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2
+ 
+16.51.34 JOB00156 ---- FRIDAY,    09 OCT 2020 ----
+16.51.34 JOB00156  IRR010I  USERID KC03I74  IS ASSIGNED TO THIS JOB.
+16.51.35 JOB00156  ICH70001I KC03I74  LAST ACCESS AT 16:47:43 ON FRIDAY, OCTOBER 9, 2020
+16.51.35 JOB00156  $HASP373 KC03I74A STARTED - INIT 2    - CLASS A        - SYS 2964
+16.51.39 JOB00156  $HASP395 KC03I74A ENDED - RC=0000
+------ JES2 JOB STATISTICS ------
+  09 OCT 2020 JOB EXECUTION DATE
+          335 CARDS READ
+          841 SYSOUT PRINT RECORDS
+            0 SYSOUT PUNCH RECORDS
+           52 SYSOUT SPOOL KBYTES
+         0.09 MINUTES EXECUTION TIME
+        1 //KC03I74A JOB ,'C. MCANTIRE',MSGCLASS=H                                JOB00156
+          //*
+          //********************************************************************
+          //*                                                                  *
+          //*  ASSIGNMENT 4                                                    *
+          //*  AUTHOR: CODY MCANTIRE                                           *
+          //*  DUE: 10/09/20                                                   *
+          //*                                                                  *
+          //********************************************************************
+          //*                                                                  *
+          //* ASSIGN4  -  INTRODUCTION TO COBOL                                *
+          //*             THIS PROGRAM WRITES A COMPLETE COBOL PROGRAM THAT    *
+          //*             CREATES A SIGNLE REPORT BASED ON INFORMATION         *
+          //*             CONTAINED IN A FILE WITH AN UNKNOWN NUMBER OF RECORDS*
+          //*                                                                  *
+          //********************************************************************
+          //*                                                                  *
+          //* JSTEP01  -  TRANSLATES COBOL SOURCE CODE TO ASSEMBLER THEN       *
+          //*             TO MACHINE LANGUAGE                                  *
+          //*             MODULE NAME: IGYCRCTL                                *
+          //*             REQUIRED REGION: REGION=0M                           *
+          //*             RECOMMENDED PARAMETERS: PARM=LIST,APOST              *
+          //*                                                                  *
+          //* SYSIN   -   INDICATES THE COBOL SOURCE PROGRAM                   *
+          //*                                                                  *
+          //********************************************************************
+          //*
+        2 //JSTEP01  EXEC PGM=IGYCRCTL,REGION=0M,PARM=APOST
+          //*
+        3 //SYSIN    DD *
+          //*******************************************************************
+          //*                                                                 *
+          //* SYSLIN - TEMP DATA SET THAT IS PASSED TO SUBSEQUENT BINDER STEP *
+          //*                                                                 *
+          //* SYSPRINT - INDICATE DATA SET TO BE WRITTEN                      *
+          //*                                                                 *
+          //* SYSUT1 THROUGH SYSUT15 - INDICATES WORK DATA SETS USED BY       *
+          //*                          THE COMPILER DURING COMPILATION PROCESS*
+          //*                          THESE SHOULD BE DELETED AT END OF STEP *
+          //*                                                                 *
+          //* SYSMDECK - INDICATE DATA SET THAT CONTAINS A COPY OF THE UPDATED*
+          //*            INPUT SOURCE AFTER LIBRARY PROCESSING                *
+          //*                                                                 *
+          //* SYSUDUMP - IN CASE OF ABEND DUMP OUTPUT                         *
+          //*                                                                 *
+          //*******************************************************************
+          //*
+        4 //SYSLIN   DD DSN=&&TEMP,SPACE=(CYL,(1,1)),DISP=(MOD,PASS)
+          //*
+        5 //SYSPRINT DD SYSOUT=*
+          //*
+        6 //SYSUT1   DD SPACE=(CYL,(1,1))
+        7 //SYSUT2   DD SPACE=(CYL,(1,1))
+        8 //SYSUT3   DD SPACE=(CYL,(1,1))
+        9 //SYSUT4   DD SPACE=(CYL,(1,1))
+       10 //SYSUT5   DD SPACE=(CYL,(1,1))
+       11 //SYSUT6   DD SPACE=(CYL,(1,1))
+       12 //SYSUT7   DD SPACE=(CYL,(1,1))
+       13 //SYSUT8   DD SPACE=(CYL,(1,1))
+       14 //SYSUT9   DD SPACE=(CYL,(1,1))
+       15 //SYSUT10  DD SPACE=(CYL,(1,1))
+       16 //SYSUT11  DD SPACE=(CYL,(1,1))
+       17 //SYSUT12  DD SPACE=(CYL,(1,1))
+       18 //SYSUT13  DD SPACE=(CYL,(1,1))
+       19 //SYSUT14  DD SPACE=(CYL,(1,1))
+       20 //SYSUT15  DD SPACE=(CYL,(1,1))
+       21 //SYSMDECK DD SPACE=(CYL,(1,1))
+          //*
+          //****************************************************************
+          //*                                                              *
+          //*                           BINDER STEP                        *
+          //*                                                              *
+          //* JSTEP02 - MODULE NAME: HEWL                                  *
+          //*           TAKES NON-EXECUTABLE OBJECT MODULE AS INPUT AND    *
+          //*           PRODUCES EXECUTABLE VERSION OF PROGRAM KNOWN AS A  *
+          //*           PROGRAM OBJECT. DOES NOT EXECUTE THE LOAD MODULE   *
+          //*                                                              *
+          //* SYSLIB - IBM DATA SET CONTAINS LANGUAGE ENVIRONMENT          *
+          //*          RESIDENT LIBRARY ROUTINES THAT WILL BE AUTO         *
+          //*          INCLUDED AS SECONDARY INPUT INTO EXECUTABLE PROG    *
+          //*                                                              *
+          //* SYSLIN - ONE OR MORE OBJECT MODULES                          *
+          //*                                                              *
+          //* SYSLMOD - LOAD MODULE OR PROG OBJ CREATED BY THE BINDER      *
+          //*           MUST BE STORED AS A PDSE NUMBER (LIBRARY)          *
+          //*                                                              *
+          //* SYSPRINT -  INDICATES MESSAGES TO BE WRITTEN                 *
+          //*                                                              *
+          //****************************************************************
+          //*
+       22 //JSTEP02  EXEC PGM=HEWL,COND=(0,LT)
+          //*
+       23 //SYSLIB   DD  DSN=CEE.SCEELKED,DISP=SHR
+          //*
+       24 //SYSLIN   DD  DSN=&&TEMP,SPACE=(CYL,(1,1)),
+          //             DISP=(MOD,PASS)
+          //*
+       25 //SYSLMOD  DD  DSN=KC03I74.CSCI465.LOADLIB(ENDOWMT1),
+          //             SPACE=(1024,(50,20,1)),DSNTYPE=LIBRARY,
+          //             DISP=(MOD,KEEP,KEEP)
+          //*
+       26 //SYSPRINT DD  SYSOUT=*
+          //*
+       27 //SYSUDUMP DD  SYSOUT=*
+          //****************************************************************
+          //*                                                              *
+          //*                     FETCH AND EXECUTE STEP                   *
+          //*                                                              *
+          //* JSTEP03 - FETCH LOAD MODULE ASMPGM3 WHEN RC FOR PREV STEPS  0*
+          //*                                                              *
+          //* STEPLIB - LOCATE MY PDSE                                     *
+          //*                                                              *
+          //* COBIN - DD CARD MUST BE ASMIN3. GETS INPUT FILE DATA3        *
+          //*                                                              *
+          //* COBOUT - DD CARD MUST BE ASMOUT3                             *
+          //*                                                              *
+          //* SYSUDUMP - IN CASE OF ABEND DUMP OUTPUT                      *
+          //****************************************************************
+          //*
+       28 //JSTEP03  EXEC PGM=ENDOWMT1,COND=(0,LT)
+          //*
+       29 //STEPLIB  DD  DSN=KC03I74.CSCI465.LOADLIB,DISP=SHR
+          //*
+       30 //ENDOWFLE DD  DSN=KC02322.CSCI465.DATAFA20(DATA4),DISP=SHR
+          //*
+       31 //RPTFLE   DD  SYSOUT=*
+          //*
+       32 //SYSUDUMP DD  SYSOUT=*
+ICH70001I KC03I74  LAST ACCESS AT 16:47:43 ON FRIDAY, OCTOBER 9, 2020
+IEFA111I KC03I74A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR KC03I74A JSTEP01
+IEF237I JES2 ALLOCATED TO SYSIN
+IGD101I SMS ALLOCATED TO DDNAME (SYSLIN  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.TEMP.H01    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT1  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180293    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT2  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180294    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT3  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180295    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT4  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180296    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT5  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180297    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT6  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180298    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT7  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180299    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT8  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180300    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT9  )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180301    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT10 )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180302    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT11 )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180303    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT12 )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180304    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT13 )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180305    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT14 )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180306    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSUT15 )
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180307    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IGD101I SMS ALLOCATED TO DDNAME (SYSMDECK)
+        DSN (SYS20283.T165134.RA000.KC03I74A.R0180308    )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00
+IEF142I KC03I74A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   KC03I74.KC03I74A.JOB00156.D0000101.?         SYSIN
+IGD106I SYS20283.T165134.RA000.KC03I74A.TEMP.H01     PASSED,    DDNAME=SYSLIN
+IEF285I   KC03I74.KC03I74A.JOB00156.D0000102.?         SYSOUT
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180293     DELETED,   DDNAME=SYSUT1
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180294     DELETED,   DDNAME=SYSUT2
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180295     DELETED,   DDNAME=SYSUT3
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180296     DELETED,   DDNAME=SYSUT4
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180297     DELETED,   DDNAME=SYSUT5
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180298     DELETED,   DDNAME=SYSUT6
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180299     DELETED,   DDNAME=SYSUT7
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180300     DELETED,   DDNAME=SYSUT8
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180301     DELETED,   DDNAME=SYSUT9
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180302     DELETED,   DDNAME=SYSUT10
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180303     DELETED,   DDNAME=SYSUT11
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180304     DELETED,   DDNAME=SYSUT12
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180305     DELETED,   DDNAME=SYSUT13
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180306     DELETED,   DDNAME=SYSUT14
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180307     DELETED,   DDNAME=SYSUT15
+IGD105I SYS20283.T165134.RA000.KC03I74A.R0180308     DELETED,   DDNAME=SYSMDECK
+IEF373I STEP/JSTEP01 /START 2020283.1651
+IEF032I STEP/JSTEP01 /STOP  2020283.1651
+        CPU:     0 HR  00 MIN  00.04 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:   500K  SYS:  4264K  EXT:   135892K  SYS:    13668K
+        ATB- REAL:                  6172K  SLOTS:                     0K
+             VIRT- ALLOC:     529M SHRD:       0M
+IEFA108I KC03I74A JSTEP02 SYSLIN - PASSED DATA SET INFORMATION FOUND. MOD IS TREATED AS OLD
+IEF236I ALLOC. FOR KC03I74A JSTEP02
+IEF237I 1001 ALLOCATED TO SYSLIB
+IGD103I SMS ALLOCATED TO DDNAME SYSLIN
+IGD103I SMS ALLOCATED TO DDNAME SYSLMOD
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I JES2 ALLOCATED TO SYSUDUMP
+IEF142I KC03I74A JSTEP02 - STEP WAS EXECUTED - COND CODE 0000
+IEF285I   CEE.SCEELKED                                 KEPT
+IEF285I   VOL SER NOS= VTMVSC.
+IGD106I SYS20283.T165134.RA000.KC03I74A.TEMP.H01     PASSED,    DDNAME=SYSLIN
+IGD104I KC03I74.CSCI465.LOADLIB                      RETAINED,  DDNAME=SYSLMOD
+IEF285I   KC03I74.KC03I74A.JOB00156.D0000103.?         SYSOUT
+IEF285I   KC03I74.KC03I74A.JOB00156.D0000104.?         SYSOUT
+IEF373I STEP/JSTEP02 /START 2020283.1651
+IEF032I STEP/JSTEP02 /STOP  2020283.1651
+        CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:    88K  SYS:   256K  EXT:     1768K  SYS:    11684K
+        ATB- REAL:                  1068K  SLOTS:                     0K
+             VIRT- ALLOC:      15M SHRD:       0M
+IEF236I ALLOC. FOR KC03I74A JSTEP03
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IGD103I SMS ALLOCATED TO DDNAME ENDOWFLE
+IEF237I JES2 ALLOCATED TO RPTFLE
+IEF237I JES2 ALLOCATED TO SYSUDUMP
+IEF142I KC03I74A JSTEP03 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC03I74.CSCI465.LOADLIB                      RETAINED,  DDNAME=STEPLIB
+IGD104I KC02322.CSCI465.DATAFA20                     RETAINED,  DDNAME=ENDOWFLE
+IEF285I   KC03I74.KC03I74A.JOB00156.D0000105.?         SYSOUT
+IEF285I   KC03I74.KC03I74A.JOB00156.D0000106.?         SYSOUT
+IEF373I STEP/JSTEP03 /START 2020283.1651
+IEF032I STEP/JSTEP03 /STOP  2020283.1651
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+        VIRT:    92K  SYS:   268K  EXT:     2588K  SYS:    11684K
+        ATB- REAL:                  1068K  SLOTS:                     0K
+             VIRT- ALLOC:      15M SHRD:       0M
+IGD103I SMS ALLOCATED TO DDNAME SYS00001
+IGD104I SYS20283.T165139.RA000.KC03I74A.R0180309     RETAINED,  DDNAME=SYS00001
+IGD105I SYS20283.T165134.RA000.KC03I74A.TEMP.H01     DELETED,   DDNAME=SYSLIN
+IEF375I  JOB/KC03I74A/START 2020283.1651
+IEF033I  JOB/KC03I74A/STOP  2020283.1651
+        CPU:     0 HR  00 MIN  00.05 SEC    SRB:     0 HR  00 MIN  00.00 SEC
+      ****************************************************************
+      *                                                              *
+      * PROGRAM NAME:  ENDOWMT1                                      *
+      *                                                              *
+      * FUNCTION:  THIS PROGRAM READS FUND DATA RECORDS AND THEN     *
+      *            WRITES THEM TO STANDARD OUTPUT.                   *
+      *                                                              *
+      * INPUT:     INFILE - THE INPUT DATA RECORDS READ IN.          *
+      *                                                              *
+      * OUTPUT:    OUTFILE - THE INPUT DATA RECORDS WRITTEN OUT.     *
+      *                                                              *
+      ****************************************************************
+ 
+       IDENTIFICATION DIVISION.
+ 
+       PROGRAM-ID.    ENDOWMT1.
+       AUTHOR.        CODY MCANTIRE.
+       DATE-WRITTEN.  10/09/2020.
+       DATE-COMPILED.
+ 
+       ENVIRONMENT DIVISION.
+ 
+      ****************************************************************
+      *                                                              *
+      *                STEPS TO RETRIEVE AND PRINT DATA              *
+      *                                                              *
+      ****************************************************************
+       INPUT-OUTPUT SECTION.
+ 
+       FILE-CONTROL.
+ 
+           SELECT ENDOW-FILE ASSIGN TO ENDOWFLE.
+           SELECT REPORT-FILE ASSIGN TO RPTFLE.
+ 
+       DATA DIVISION.
+ 
+       FILE SECTION.
+ 
+       FD  ENDOW-FILE
+           RECORDING MODE IS F.
+ 
+       01  ENDOW-RECORD.
+           05  IN-ORCHESTRA-NME          PIC X(45).
+           05  FILLER                    PIC X(5).
+           05  IN-ENDOW-AMT              PIC S9(9)V99.
+           05  FILLER                    PIC X(3).
+           05  IN-ENDOW-FLG              PIC 9.
+           05  IN-USUFRUCTUARY-LMT       PIC S9(9)V99.
+           05  FILLER                    PIC X(4).
+ 
+       FD  REPORT-FILE
+           RECORDING MODE IS F.
+ 
+       01  REPORT-RECORD                PIC X(132).
+ 
+ 
+       WORKING-STORAGE SECTION.
+ 
+      ****************************************************************
+      *                                                              *
+      *  MISCELLANEOUS                                               *
+      *                                                              *
+      *  ACCUMULATORS                                                *
+      *                                                              *
+      *  COUNTERS                                                    *
+      *                                                              *
+      *  HEADER                                                      *
+      *                                                              *
+      *  HYPHENS                                                     *
+      *                                                              *
+      *  CURRENT DATE                                                *
+      *                                                              *
+      *  DETAIL LINE                                                 *
+      *                                                              *
+      *  FOOTER                                                      *
+      ****************************************************************
+ 
+       01  MISCELLANEOUS.
+           05  EOF-FLAG          PIC X      VALUE 'N'.
+ 
+       01  ACCUMULATORS.
+           05  ENDOW-AMT         PIC S9(11)V99 BINARY SYNC
+                                               VALUE 0.
+ 
+       01  COUNTERS.
+           05  PAGE-CTR        PIC 9(3)  PACKED-DECIMAL VALUE 0.
+           05  LINE-CTR        PIC S9(2) BINARY SYNC VALUE 99.
+           05  ENDOW-CTR       PIC S9(3) PACKED-DECIMAL VALUE 0.
+ 
+       01  HEADER-1.
+           05  OUT-CURRENT-DATE.
+               10  CURRENT-MONTH        PIC 99.
+               10  FILLER               PIC X VALUE '/'.
+               10  CURRENT-DAY          PIC 99.
+               10  FILLER               PIC X VALUE '/'.
+               10  CURRENT-YEAR         PIC 9(4).
+               10  FILLER               PIC X(122) VALUE SPACES.
+ 
+       01  HYPHENS-1.
+           05  FILLER                   PIC X(1) VALUE SPACES.
+           05  FILLER                   PIC X(1)  VALUE ALL '-'.
+           05  FILLER                   PIC X(10) VALUE SPACES.
+ 
+       01  CURRENT-DATE-FIELDS.
+           05  CURRENT-DATE.
+               10  CURRENT-YEAR                  PIC  9(4).
+               10  CURRENT-MONTH                 PIC  9(2).
+               10  CURRENT-DAY                   PIC  9(2).
+ 
+       01  DETAIL-LINE.
+           05  OUT-ORCSTRA-NME          PIC X(45).
+           05  FILLER                   PIC X(5) VALUE SPACES.
+           05  OUT-ENDOW-AMT            PIC $$$$,$$$,$$9.99.
+           05  FILLER                   PIC X(5) VALUE SPACES.
+           05  OUT-ENDOW-FLG            PIC 9.
+           05  FILLER                   PIC X(5) VALUE SPACES.
+           05  OUT-USUFRUCTUARY-LMT     PIC $$$$,$$$,$$9.99.
+           05  FILLER                   PIC X(41) VALUE SPACES.
+ 
+ 
+       01  FOOTER-1.
+           05  FILLER                   PIC X(50) VALUE SPACES.
+           05  OUT-TTL-ENDOW-AMT        PIC $$$,$$$,$$9.99.
+           05  FILLER                   PIC X(65) VALUE SPACES.
+ 
+      ****************************************************************
+      *                                                              *
+      * MAIN FUNCTIONS DOES LOGIC AND PRINTS RECORDS                 *
+      *                                                              *
+      ****************************************************************
+ 
+       PROCEDURE DIVISION.
+ 
+       0000-MAIN.
+ 
+           PERFORM 0100-DATE.
+ 
+           OPEN INPUT  ENDOW-FILE
+                OUTPUT REPORT-FILE.
+ 
+           READ ENDOW-FILE
+             AT END MOVE 'Y' TO EOF-FLAG
+           END-READ.
+ 
+           PERFORM 0200-PROCESS-ENDOW-RECORD
+             UNTIL EOF-FLAG = 'Y'.
+ 
+           CLOSE ENDOW-FILE
+                 REPORT-FILE.
+ 
+           GOBACK.
+ 
+       0000-EXIT. EXIT.
+      ****************************************************************
+      *                                                              *
+      *                MOVE DATE                                     *
+      *                                                              *
+      ****************************************************************
+       0100-DATE.
+ 
+               MOVE FUNCTION CURRENT-DATE TO CURRENT-DATE-FIELDS.
+ 
+               MOVE CORR CURRENT-DATE TO OUT-CURRENT-DATE.
+ 
+       0100-EXIT. EXIT.
+      ****************************************************************
+      *                                                              *
+      *                 PROCESS RECORDS                              *
+      *                                                              *
+      ****************************************************************
+       0200-PROCESS-ENDOW-RECORD.
+ 
+           ADD 1 TO ENDOW-CTR.
+ 
+           MOVE IN-ORCHESTRA-NME TO OUT-ORCSTRA-NME.
+           MOVE IN-ENDOW-AMT TO OUT-ENDOW-AMT.
+           MOVE IN-ENDOW-FLG TO OUT-ENDOW-FLG.
+           MOVE IN-USUFRUCTUARY-LMT TO OUT-USUFRUCTUARY-LMT.
+ 
+ 
+           IF LINE-CTR > 15
+             PERFORM 0210-WRITE-PAGE-HEADERS
+           END-IF.
+ 
+           WRITE REPORT-RECORD FROM DETAIL-LINE AFTER 2.
+           ADD 1 TO LINE-CTR.
+ 
+           READ ENDOW-FILE
+             AT END MOVE 'Y' TO EOF-FLAG
+           END-READ.
+ 
+       0200-EXIT. EXIT.
+      ****************************************************************
+      *                                                              *
+      * WRITE PAGE HEADERS IS CALLED ABOVE TO PRINT HEADER           *
+      *                                                              *
+      ****************************************************************
+       0210-WRITE-PAGE-HEADERS.
+           ADD 1 TO PAGE-CTR.
+      *    MOVE PAGE-CTR TO OUT-PAGE-CTR.
+      *    WRITE REPORT-RECORD FROM HEADER-1 AFTER PAGE.
+      *    WRITE REPORT-RECORD FROM HEADER-2 AFTER 1.
+      *    WRITE REPORT-RECORD FROM COL-HDR-1 AFTER 2.
+           WRITE REPORT-RECORD FROM HYPHENS-1 AFTER 1.
+           MOVE 0 TO LINE-CTR.
+       0210-EXIT. EXIT.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107                 Date 10/09/2020  Time 16:51:37   Page     1
+Invocation parameters:
+ APOST
+Options in effect:
+ NOADATA
+   ADV
+   AFP(NOVOLATILE)
+   APOST
+   ARCH(7)
+   ARITH(COMPAT)
+ NOAWO
+ NOBLOCK0
+   BUFSIZE(4096)
+ NOCICS
+   CODEPAGE(1140)
+ NOCOMPILE(S)
+ NOCOPYLOC
+ NOCOPYRIGHT
+ NOCURRENCY
+   DATA(31)
+   DBCS
+ NODECK
+ NODEFINE
+ NODIAGTRUNC
+   DISPSIGN(COMPAT)
+ NODLL
+ NODUMP
+ NODYNAM
+ NOEXIT
+ NOEXPORTALL
+ NOFASTSRT
+   FLAG(I,I)
+ NOFLAGSTD
+   HGPR(PRESERVE)
+ NOINITCHECK
+   INLINE
+   INTDATE(ANSI)
+   LANGUAGE(EN)
+   LINECOUNT(60)
+ NOLIST
+ NOMAP
+   MAXPCF(100000)
+ NOMDECK
+ NONAME
+   NSYMBOL(NATIONAL)
+ NONUMBER
+ NONUMCHECK
+   NUMPROC(NOPFD)
+   OBJECT
+ NOOFFSET
+   OPTIMIZE(0)
+   OUTDD(SYSOUT)
+ NOPARMCHECK
+   PGMNAME(COMPAT)
+   QUALIFY(COMPAT)
+   RENT
+   RMODE(AUTO)
+ NORULES
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107                 Date 10/09/2020  Time 16:51:37   Page     2
+ NOSERVICE
+   SEQUENCE
+   SOURCE
+   SPACE(1)
+ NOSQL
+   SQLCCSID
+ NOSQLIMS
+ NOSSRANGE
+ NOSTGOPT
+   SUPPRESS
+ NOTERM
+ NOTEST(NODWARF,NOSOURCE,NOSEPARATE)
+ NOTHREAD
+   TRUNC(STD)
+ NOVBREF
+   VLR(STANDARD)
+   VSAMOPENFS(COMPAT)
+ NOWORD
+   XMLPARSE(XMLSS)
+   XREF(FULL)
+   ZONEDATA(PFD)
+   ZWB
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107       ENDOWMT1  Date 10/09/2020  Time 16:51:37   Page     3
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000001               ****************************************************************
+  000002               *                                                              *
+  000003               * PROGRAM NAME:  ENDOWMT1                                      *
+  000004               *                                                              *
+  000005               * FUNCTION:  THIS PROGRAM READS FUND DATA RECORDS AND THEN     *
+  000006               *            WRITES THEM TO STANDARD OUTPUT.                   *
+  000007               *                                                              *
+  000008               * INPUT:     INFILE - THE INPUT DATA RECORDS READ IN.          *
+  000009               *                                                              *
+  000010               * OUTPUT:    OUTFILE - THE INPUT DATA RECORDS WRITTEN OUT.     *
+  000011               *                                                              *
+  000012               ****************************************************************
+  000013
+  000014                IDENTIFICATION DIVISION.
+  000015
+  000016                PROGRAM-ID.    ENDOWMT1.
+  000017                AUTHOR.        CODY MCANTIRE.
+  000018                DATE-WRITTEN.  10/09/2020.
+  000019                DATE-COMPILED. 10/09/20.
+  000020
+  000021                ENVIRONMENT DIVISION.
+  000022
+  000023               ****************************************************************
+  000024               *                                                              *
+  000025               *                STEPS TO RETRIEVE AND PRINT DATA              *
+  000026               *                                                              *
+  000027               ****************************************************************
+  000028                INPUT-OUTPUT SECTION.
+  000029
+  000030                FILE-CONTROL.
+  000031
+  000032                    SELECT ENDOW-FILE ASSIGN TO ENDOWFLE.                                 39
+  000033                    SELECT REPORT-FILE ASSIGN TO RPTFLE.                                  51
+  000034
+  000035                DATA DIVISION.
+  000036
+  000037                FILE SECTION.
+  000038
+  000039                FD  ENDOW-FILE
+  000040                    RECORDING MODE IS F.
+  000041
+  000042                01  ENDOW-RECORD.
+  000043                    05  IN-ORCHESTRA-NME          PIC X(45).
+  000044                    05  FILLER                    PIC X(5).
+  000045                    05  IN-ENDOW-AMT              PIC S9(9)V99.
+  000046                    05  FILLER                    PIC X(3).
+  000047                    05  IN-ENDOW-FLG              PIC 9.
+  000048                    05  IN-USUFRUCTUARY-LMT       PIC S9(9)V99.
+  000049                    05  FILLER                    PIC X(4).
+  000050
+  000051                FD  REPORT-FILE
+  000052                    RECORDING MODE IS F.
+  000053
+  000054                01  REPORT-RECORD                PIC X(132).
+  000055
+  000056
+  000057                WORKING-STORAGE SECTION.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107       ENDOWMT1  Date 10/09/2020  Time 16:51:37   Page     4
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000058
+  000059               ****************************************************************
+  000060               *                                                              *
+  000061               *  MISCELLANEOUS                                               *
+  000062               *                                                              *
+  000063               *  ACCUMULATORS                                                *
+  000064               *                                                              *
+  000065               *  COUNTERS                                                    *
+  000066               *                                                              *
+  000067               *  HEADER                                                      *
+  000068               *                                                              *
+  000069               *  HYPHENS                                                     *
+  000070               *                                                              *
+  000071               *  CURRENT DATE                                                *
+  000072               *                                                              *
+  000073               *  DETAIL LINE                                                 *
+  000074               *                                                              *
+  000075               *  FOOTER                                                      *
+  000076               ****************************************************************
+  000077
+  000078                01  MISCELLANEOUS.
+  000079                    05  EOF-FLAG          PIC X      VALUE 'N'.
+  000080
+  000081                01  ACCUMULATORS.
+  000082                    05  ENDOW-AMT         PIC S9(11)V99 BINARY SYNC
+  000083                                                        VALUE 0.
+  000084
+  000085                01  COUNTERS.
+  000086                    05  PAGE-CTR        PIC 9(3)  PACKED-DECIMAL VALUE 0.
+  000087                    05  LINE-CTR        PIC S9(2) BINARY SYNC VALUE 99.
+  000088                    05  ENDOW-CTR       PIC S9(3) PACKED-DECIMAL VALUE 0.
+  000089
+  000090                01  HEADER-1.
+  000091                    05  OUT-CURRENT-DATE.
+  000092                        10  CURRENT-MONTH        PIC 99.
+  000093                        10  FILLER               PIC X VALUE '/'.
+  000094                        10  CURRENT-DAY          PIC 99.
+  000095                        10  FILLER               PIC X VALUE '/'.
+  000096                        10  CURRENT-YEAR         PIC 9(4).
+  000097                        10  FILLER               PIC X(122) VALUE SPACES.                 IMP
+  000098
+  000099                01  HYPHENS-1.
+  000100                    05  FILLER                   PIC X(1) VALUE SPACES.                   IMP
+  000101                    05  FILLER                   PIC X(1)  VALUE ALL '-'.
+  000102                    05  FILLER                   PIC X(10) VALUE SPACES.                  IMP
+  000103
+  000104                01  CURRENT-DATE-FIELDS.
+  000105                    05  CURRENT-DATE.
+  000106                        10  CURRENT-YEAR                  PIC  9(4).
+  000107                        10  CURRENT-MONTH                 PIC  9(2).
+  000108                        10  CURRENT-DAY                   PIC  9(2).
+  000109
+  000110                01  DETAIL-LINE.
+  000111                    05  OUT-ORCSTRA-NME          PIC X(45).
+  000112                    05  FILLER                   PIC X(5) VALUE SPACES.                   IMP
+  000113                    05  OUT-ENDOW-AMT            PIC $$$$,$$$,$$9.99.
+  000114                    05  FILLER                   PIC X(5) VALUE SPACES.                   IMP
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107       ENDOWMT1  Date 10/09/2020  Time 16:51:37   Page     5
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000115                    05  OUT-ENDOW-FLG            PIC 9.
+  000116                    05  FILLER                   PIC X(5) VALUE SPACES.                   IMP
+  000117                    05  OUT-USUFRUCTUARY-LMT     PIC $$$$,$$$,$$9.99.
+  000118                    05  FILLER                   PIC X(41) VALUE SPACES.                  IMP
+  000119
+  000120
+  000121                01  FOOTER-1.
+  000122                    05  FILLER                   PIC X(50) VALUE SPACES.                  IMP
+  000123                    05  OUT-TTL-ENDOW-AMT        PIC $$$,$$$,$$9.99.
+  000124                    05  FILLER                   PIC X(65) VALUE SPACES.                  IMP
+  000125
+  000126               ****************************************************************
+  000127               *                                                              *
+  000128               * MAIN FUNCTIONS DOES LOGIC AND PRINTS RECORDS                 *
+  000129               *                                                              *
+  000130               ****************************************************************
+  000131
+  000132                PROCEDURE DIVISION.
+  000133
+  000134                0000-MAIN.
+  000135
+  000136                    PERFORM 0100-DATE.                                                    159
+  000137
+  000138                    OPEN INPUT  ENDOW-FILE                                                39
+  000139                         OUTPUT REPORT-FILE.                                              51
+  000140
+  000141                    READ ENDOW-FILE                                                       39
+  000142      1               AT END MOVE 'Y' TO EOF-FLAG                                         79
+  000143                    END-READ.
+  000144
+  000145                    PERFORM 0200-PROCESS-ENDOW-RECORD                                     171
+  000146                      UNTIL EOF-FLAG = 'Y'.                                               79
+  000147
+  000148                    CLOSE ENDOW-FILE                                                      39
+  000149                          REPORT-FILE.                                                    51
+  000150
+  000151                    GOBACK.
+  000152
+  000153                0000-EXIT. EXIT.
+  000154               ****************************************************************
+  000155               *                                                              *
+  000156               *                MOVE DATE                                     *
+  000157               *                                                              *
+  000158               ****************************************************************
+  000159                0100-DATE.
+  000160
+  000161                        MOVE FUNCTION CURRENT-DATE TO CURRENT-DATE-FIELDS.                IFN 104
+  000162
+  000163                        MOVE CORR CURRENT-DATE TO OUT-CURRENT-DATE.                       105 91
+  000164
+  000165                0100-EXIT. EXIT.
+  000166               ****************************************************************
+  000167               *                                                              *
+  000168               *                 PROCESS RECORDS                              *
+  000169               *                                                              *
+  000170               ****************************************************************
+  000171                0200-PROCESS-ENDOW-RECORD.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107       ENDOWMT1  Date 10/09/2020  Time 16:51:37   Page     6
+  LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference
+  000172
+  000173                    ADD 1 TO ENDOW-CTR.                                                   88
+  000174
+  000175                    MOVE IN-ORCHESTRA-NME TO OUT-ORCSTRA-NME.                             43 111
+  000176                    MOVE IN-ENDOW-AMT TO OUT-ENDOW-AMT.                                   45 113
+  000177                    MOVE IN-ENDOW-FLG TO OUT-ENDOW-FLG.                                   47 115
+  000178                    MOVE IN-USUFRUCTUARY-LMT TO OUT-USUFRUCTUARY-LMT.                     48 117
+  000179
+  000180
+  000181                    IF LINE-CTR > 15                                                      87
+  000182      1               PERFORM 0210-WRITE-PAGE-HEADERS                                     198
+  000183                    END-IF.
+  000184
+  000185                    WRITE REPORT-RECORD FROM DETAIL-LINE AFTER 2.                         54 110
+  000186                    ADD 1 TO LINE-CTR.                                                    87
+  000187
+  000188                    READ ENDOW-FILE                                                       39
+  000189      1               AT END MOVE 'Y' TO EOF-FLAG                                         79
+  000190                    END-READ.
+  000191
+  000192                0200-EXIT. EXIT.
+  000193               ****************************************************************
+  000194               *                                                              *
+  000195               * WRITE PAGE HEADERS IS CALLED ABOVE TO PRINT HEADER           *
+  000196               *                                                              *
+  000197               ****************************************************************
+  000198                0210-WRITE-PAGE-HEADERS.
+  000199                    ADD 1 TO PAGE-CTR.                                                    86
+  000200               *    MOVE PAGE-CTR TO OUT-PAGE-CTR.
+  000201               *    WRITE REPORT-RECORD FROM HEADER-1 AFTER PAGE.
+  000202               *    WRITE REPORT-RECORD FROM HEADER-2 AFTER 1.
+  000203               *    WRITE REPORT-RECORD FROM COL-HDR-1 AFTER 2.
+  000204                    WRITE REPORT-RECORD FROM HYPHENS-1 AFTER 1.                           54 99
+  000205                    MOVE 0 TO LINE-CTR.                                                   87
+  000206                0210-EXIT. EXIT.
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107       ENDOWMT1  Date 10/09/2020  Time 16:51:37   Page     7
+An "M" preceding a data-name reference indicates that the data-name is modified by this reference.
+ 
+ Defined   Cross-reference of data names   References
+ 
+      81   ACCUMULATORS
+      85   COUNTERS
+     105   CURRENT-DATE . . . . . . . . .  163
+     104   CURRENT-DATE-FIELDS. . . . . .  M161
+      94   CURRENT-DAY. . . . . . . . . .  M163
+     108   CURRENT-DAY. . . . . . . . . .  163
+      92   CURRENT-MONTH. . . . . . . . .  M163
+     107   CURRENT-MONTH. . . . . . . . .  163
+      96   CURRENT-YEAR . . . . . . . . .  M163
+     106   CURRENT-YEAR . . . . . . . . .  163
+     110   DETAIL-LINE. . . . . . . . . .  185
+      82   ENDOW-AMT
+      88   ENDOW-CTR. . . . . . . . . . .  M173
+      39   ENDOW-FILE . . . . . . . . . .  32 138 141 148 188
+      42   ENDOW-RECORD
+      79   EOF-FLAG . . . . . . . . . . .  M142 146 M189
+     121   FOOTER-1
+      90   HEADER-1
+      99   HYPHENS-1. . . . . . . . . . .  204
+      45   IN-ENDOW-AMT . . . . . . . . .  176
+      47   IN-ENDOW-FLG . . . . . . . . .  177
+      43   IN-ORCHESTRA-NME . . . . . . .  175
+      48   IN-USUFRUCTUARY-LMT. . . . . .  178
+      87   LINE-CTR . . . . . . . . . . .  181 M186 M205
+      78   MISCELLANEOUS
+      91   OUT-CURRENT-DATE . . . . . . .  M163
+     113   OUT-ENDOW-AMT. . . . . . . . .  M176
+     115   OUT-ENDOW-FLG. . . . . . . . .  M177
+     111   OUT-ORCSTRA-NME. . . . . . . .  M175
+     123   OUT-TTL-ENDOW-AMT
+     117   OUT-USUFRUCTUARY-LMT . . . . .  M178
+      86   PAGE-CTR . . . . . . . . . . .  M199
+      51   REPORT-FILE. . . . . . . . . .  33 139 149
+      54   REPORT-RECORD. . . . . . . . .  M185 M204
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107       ENDOWMT1  Date 10/09/2020  Time 16:51:37   Page     8
+Context usage is indicated by the letter preceding a procedure-name reference.
+These letters and their meanings are:
+    A = ALTER (procedure-name)
+    D = GO TO (procedure-name) DEPENDING ON
+    E = End of range of (PERFORM) through (procedure-name)
+    G = GO TO (procedure-name)
+    P = PERFORM (procedure-name)
+    T = (ALTER) TO PROCEED TO (procedure-name)
+    U = USE FOR DEBUGGING (procedure-name)
+ 
+ Defined   Cross-reference of procedures   References
+ 
+     153   0000-EXIT
+     134   0000-MAIN
+     159   0100-DATE. . . . . . . . . . .  P136
+     165   0100-EXIT
+     192   0200-EXIT
+     171   0200-PROCESS-ENDOW-RECORD. . .  P145
+     206   0210-EXIT
+     198   0210-WRITE-PAGE-HEADERS. . . .  P182
+PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.2.0 P190107       ENDOWMT1  Date 10/09/2020  Time 16:51:37   Page     9
+ Defined   Cross-reference of programs     References
+ 
+      16   ENDOWMT1
+* Statistics for COBOL program ENDOWMT1:
+*    Source records = 206
+*    Data Division statements = 32
+*    Procedure Division statements = 27
+*    Generated COBOL statements = 0
+*    Program complexity factor = 28
+End of compilation 1,  program ENDOWMT1,  no statements flagged.
+Return code 0
+z/OS V2 R3 BINDER     16:51:39 FRIDAY OCTOBER  9, 2020
+BATCH EMULATOR  JOB(KC03I74A) STEP(JSTEP02 ) PGM= HEWL
+ 
+ 
+ 
+                                *** O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+PROCESSING OPTIONS:
+ 
+   ALIASES             NO
+   ALIGN2              NO
+   AMODE               UNSPECIFIED
+   CALL                YES
+   CASE                UPPER
+   COMPAT              UNSPECIFIED
+   COMPRESS            AUTO
+   DCBS                NO
+   DYNAM               NO
+   EXTATTR             UNSPECIFIED
+   EXITS:              NONE
+   FILL                NONE
+   GID                 UNSPECIFIED
+   HOBSET              NO
+   INFO                NO
+   LET                 04
+   LINECT              060
+   LIST                SUMMARY
+   LISTPRIV            NO
+   LONGPARM            NO
+   MAP                 NO
+   MAXBLK              032760
+   MODMAP              NO
+   MSGLEVEL            00
+   OVLY                NO
+   PRINT               YES
+   RES                 NO
+   REUSABILITY         UNSPECIFIED
+   RMODE               UNSPECIFIED
+   RMODEX              NO
+   SIGN                NO
+   STORENX             NOREPLACE
+   STRIPCL             NO
+   STRIPSEC            NO
+   SYMTRACE
+   TERM                NO
+   TRAP                ON
+   UID                 UNSPECIFIED
+   UPCASE              NO
+   WKSPACE             000000K,000000K
+   XCAL                NO
+   XREF                NO
+   ***END OF OPTIONS***
+ 
+ 
+ 
+ 
+SAVE OPERATION SUMMARY:
+ 
+   MEMBER NAME         ENDOWMT1
+   LOAD LIBRARY        KC03I74.CSCI465.LOADLIB
+   PROGRAM TYPE        PROGRAM OBJECT(FORMAT 3)
+   VOLUME SERIAL       KCTR49
+   DISPOSITION         REPLACED
+   TIME OF SAVE        16.51.39  OCT  9, 2020
+ 
+ 
+SAVE MODULE ATTRIBUTES:
+ 
+   AC                  000
+   AMODE                31
+   COMPRESSION         NONE
+   DC                  NO
+   EDITABLE            YES
+   EXCEEDS 16MB        NO
+   EXECUTABLE          YES
+   LONGPARM            NO
+   MIGRATABLE          NO
+   OL                  NO
+   OVLY                NO
+   PACK,PRIME          NO,NO
+   PAGE ALIGN          NO
+   REFR                NO
+   RENT                NO
+   REUS                NO
+   RMODE               ANY
+   SCTR                NO
+   SIGN                NO
+   SSI
+   SYM GENERATED       NO
+   TEST                NO
+   XPLINK              NO
+   MODULE SIZE (HEX)   00002460
+   DASD SIZE (HEX)     0000B000
+ 
+ 
+ ENTRY POINT AND ALIAS SUMMARY:
+ 
+ NAME:            ENTRY TYPE AMODE C_OFFSET CLASS NAME        STATUS
+ 
+ ENDOWMT1          MAIN_EP      31 00000000 C_CODE
+ 
+                         *** E N D   O F   O P E R A T I O N   S U M M A R Y   R E P O R T ***
+ 
+ 
+ 
+ 
+z/OS V2 R3 BINDER     16:51:39 FRIDAY OCTOBER  9, 2020
+BATCH EMULATOR  JOB(KC03I74A) STEP(JSTEP02 ) PGM= HEWL
+IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  0.
+ 
+ 
+ 
+----------------------
+MESSAGE SUMMARY REPORT
+----------------------
+ TERMINAL MESSAGES      (SEVERITY = 16)
+ NONE
+ 
+ SEVERE MESSAGES        (SEVERITY = 12)
+ NONE
+ 
+ ERROR MESSAGES         (SEVERITY = 08)
+ NONE
+ 
+ WARNING MESSAGES       (SEVERITY = 04)
+ NONE
+ 
+ INFORMATIONAL MESSAGES (SEVERITY = 00)
+ 2008
+ 
+ 
+ **** END OF MESSAGE SUMMARY REPORT ****
+ 
+ -
+Berlin Philharmonic                                   $936,184.80     2         $136,184.80
+Vienna Philharmonic                                 $7,166,149.40     4       $1,124,644.49
+Chicago Symphony Orchestra                          $1,808,213.50     1         $999,999.99
+Boston Symphony Orchestra                           $4,008,702.00     2       $1,238,533.02
+Kansas City Symphony                                $2,242,199.90     3       $1,112,233.90
+New York Philharmonic                               $2,340,612.10     1       $1,111,122.14
+Grand Rapids Symphony Orchestra                     $2,074,303.90     1       $1,114,424.90
+Seattle Symphony Orchestra                          $4,228,415.20     4         $928,415.70
+Symphony Orchestra of the Bavarian Radio            $3,108,140.21     1       $1,108,140.21
+Orchestra of the German Opera Berlin                $2,110,810.27     3          $99,999.27
+Orchestra of Paris                                  $4,310,810.06     2       $2,222,644.39
+National Orchestra of France                        $2,410,012.15     4         $226,468.95
+London Philharmonic Orchestra                         $140,812.24     4          $99,999.98
+London Symphony Orchestra                           $3,104,812.33     2       $1,104,812.33
+Philharmonia Orchestra                                $102,312.42     1          $99,912.42
+San Francisco Symphony                              $2,101,142.56     2       $1,000,000.00
+ -
+Scottish National Orchestra                         $3,104,124.67     2       $1,500,000.00
+National Orchestra of Ireland                       $3,108,214.26     1       $1,500,000.00
+Czech Philharmonic                                  $3,310,831.45     1         $999,999.99
+Munich Philharmonic                                 $2,512,234.10     1       $1,750,000.00
+Orchestra of the Vienna State Opera                 $3,300,005.24     1       $1,890,000.99
+Detroit Symphony                                       $31,116.05     1         $999,999.99
+Cleveland Orchestra                                 $3,103,817.26     4         $103,817.26
+St. Louis Symphony Orchestra                        $3,108,311.27     4         $108,311.27
+Kishwaukee Symphony Orchestra                       $3,108,131.24     4         $999,999.99
+Hong Kong Symphony Orchestra                        $3,108,113.23     4       $1,950,000.00
+NHK Symphony Orchestra Tokyo                        $4,606,410.52     1       $2,500,000.00
+Beijing Philharmonic                                $2,807,640.81     1       $1,809,500.99
+Philharmonic Hamburg                                $9,068,254.17     4       $6,000,000.00
+Symphony Orchestra of the North German Radio        $6,086,271.26     4       $2,500,000.00
+Sao Paulo Symphony Orchestra                        $6,082,661.25     2       $4,500,000.00
+Florida Philharmonic                                $6,982,761.24     1       $2,982,761.24
+ -
+Lucerne Festival Orchestra                         $26,182,816.24     4      $11,112,816.24
+Beethoven Orchestra Bonn                              $608,291.23     1         $238,291.23
+Royal Philharmonic Orchestra                        $4,608,212.33     2       $1,500,000.00
+Orchestra of Opera Lyon                             $6,408,212.32     1       $2,507,900.00
+Metropolitan Opera Orchestra                        $6,048,214.21     2       $2,048,214.21
+MET Orchestra                                     $127,144,923.58     4      $25,025,025.00
+Orpheus Chamber Orchestra                           $2,179,162.07     4         $999,999.99
+Los Angeles Philharmonic                            $6,611,022.46     2       $5,000,000.00
+Berlin Radio Symphony Orchestra                    $10,663,622.50     2       $9,500,000.00
+Prague Philharmonic                                 $3,166,416.19     1         $966,416.19
+Bayreuth Festival Orchestra                         $2,216,617.29     4       $1,100,000.00
+Camerata Academica Salzburg                         $6,119,667.89     3       $3,500,000.00
+La Scala Orchestra Milan                            $1,821,144.25     4         $821,144.35
+NBC Symphony Orchestra                              $2,332,677.84     1         $150,000.00
